@@ -143,7 +143,7 @@ I recommend **prioritizing "getting 2 out of 3 correct"** over "predicting all 3
    - Consistency metrics (standard deviation of times)
    - Relative performance (time gap to fastest in each session)
 
-### **Phase 3: Model Development**
+### **Step 3: Model Development**
 1. **Baseline model**: Use only qualifying times
 2. **Full model**: Include all practice sessions
 3. **Feature importance analysis**: See which sessions matter most
@@ -239,10 +239,6 @@ Would you like me to help you:
 
 Which would be most helpful to tackle first?
 
-```plaintext
-[circuit, fp1_fastest, fp2_fastest, fp3_fastest, quali_fastest, podium_finish]
-```
-
 ---
 
 **User**
@@ -303,30 +299,6 @@ Predict top 3 drivers (not order) for F1 races using practice and qualifying tim
 ```
 
 Would you like me to help you create this documentation file, or would you prefer to save our conversation in a different way?
-
-```markdown
-# F1 Race Predictor - Project Notes
-
-## Project Goal
-Predict top 3 drivers (not order) for F1 races using practice and qualifying times
-
-## Key Decisions Made:
-1. **Features**: FP1, FP2, FP3, and Qualifying fastest lap times + circuit
-2. **Model**: Random Forest (multi-class classification)
-3. **Data Range**: 2020-2024 seasons (5 years)
-4. **Time Format**: Fastest lap from each session
-5. **Missing Data**: Exclude drivers with incomplete sessions
-6. **Driver ID**: Use driver numbers (names don't matter for prediction)
-
-## Evaluation Strategy:
-- Prioritize "2 out of 3 correct" over perfect prediction
-- Use Top-3 Precision as primary metric
-
-## Next Steps:
-1. Data collection script for 5 seasons
-2. Baseline model with qualifying times only
-3. Add practice sessions to improve predictions
-```
 
 ---
 
@@ -522,7 +494,8 @@ For each race:
 
 3. **`get_podium_finishers(race_session)`**
    - Takes race session
-   - Returns which drivers finished on podium
+   - Returns list of driver numbers who finished 1st, 2nd, 3rd
+- Handle edge cases (disqualifications, etc.)
 
 4. **`process_race(year, circuit)`**
    - Combines all session data
@@ -711,3 +684,73 @@ This will combine all session data for one race.
 
 **Ready to start with the first function?** Which one would you like to tackle first?
 
+## Project Progress Update (as of July 2024)
+
+### 1. **Current Circuits Filtering**
+- The project now uses a comprehensive `current_circuits` list, which includes all canonical and alternate location names for every circuit on the 2024 F1 calendar. This ensures all races at current tracks are included, regardless of naming variations in FastF1 data.
+- The unique locations from FastF1 event schedules were cross-checked against the official 2024 calendar, and the filter was updated to include all necessary redundancies (e.g., "Montmeló" and "Barcelona", "Monte Carlo" and "Monaco", etc.).
+
+### 2. **Race Dataset Size**
+- After filtering, the dataset includes 132 races at current circuits from 2017 to 2024. This is a robust sample, accounting for COVID disruptions, new circuit additions, and calendar changes.
+
+### 3. **Session Lap Time Extraction**
+- The function `get_session_lap_times(season, round_number, session_type)` is used to fetch the fastest lap time for each driver in a given session (FP1, FP2, FP3, Q). It works as follows:
+
+```python
+import fastf1
+
+def get_session_lap_times(season, round_number, session_type):
+    """
+    Fetches the fastest lap time for each driver in a given session.
+    Args:
+        season (int): The year of the race.
+        round_number (int): The round number of the race in the season.
+        session_type (str): The session type ('FP1', 'FP2', 'FP3', 'Q').
+    Returns:
+        dict: A dictionary mapping driver identifiers to their fastest lap time in seconds.
+    """
+    session = fastf1.get_session(season, round_number, session_type)
+    session.load()
+    laps = session.laps
+    fastest_laps = {}
+    for drv in laps['Driver'].unique():
+        driver_laps = laps[laps['Driver'] == drv]
+        if not driver_laps.empty:
+            fastest_lap = driver_laps['LapTime'].min()
+            if pd.notnull(fastest_lap):
+                fastest_laps[drv] = fastest_lap.total_seconds()
+    return fastest_laps
+```
+- This function is called for each session type and each race in the filtered list.
+
+### 4. **Main Data-Building Loop Structure**
+- For each race in the filtered race list, the main loop:
+    - Calls `get_session_lap_times` for each session type (FP1, FP2, FP3, Q).
+    - Only includes drivers who have a lap time in all sessions.
+    - Builds a row for each driver/race and appends it to the dataset.
+
+### 5. **Next Steps**
+- Proceed with feature engineering, handling missing data, and model development using the clean, filtered dataset.
+
+---
+
+**A new instance should start from this point, using the current circuits filter, the session lap time extraction function, and the main data-building loop as described above.**
+
+## Progress Update (as of June 2025)
+
+### Data Acquisition Achievements
+- Automated data collection is now working for all supported races from 2018 onward (2017 data is mostly unsupported by FastF1).
+- Robust error handling has been implemented: the script skips races/sessions where data is missing or unsupported, ensuring uninterrupted data collection.
+- Lap times are now converted to seconds for consistency and ease of analysis.
+- Results are formatted and ready for saving: Each record includes season, round, event name, circuit, session type, driver, and fastest lap time (in seconds).
+
+### Next Steps
+- Save the collected data to a CSV or Parquet file for further analysis and modeling.
+- Expand data collection to include all relevant sessions (FP1, FP2, FP3, Qualifying) for each race.
+- Begin feature engineering: Combine session data per driver/race, handle missing sessions, and prepare the dataset for machine learning.
+
+### Lessons Learned
+- FastF1 data coverage is best from 2018 onward; earlier seasons may not have complete session data.
+- Error handling is essential for large-scale data collection across many seasons and sessions.
+
+You are now ready to move on to feature engineering and dataset assembly!
