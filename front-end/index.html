@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>F1 Race Predictor</title>
+
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+        <link rel="stylesheet" href="/front-end/styles.css" />
+    </head>
+    <body>
+        <form id="predict-form">
+            <label>Circuit:
+                <select name="circuit" required>
+                    <option value="Australian Grand Prix">Australian GP</option>
+                    <option value="Monaco Grand Prix">Monaco GP</option>
+                    <option value="British Grand Prix">British GP</option>
+                    <!-- Add more as needed -->
+                </select>
+            </label><br>
+            <label>FP1 Lap Time (seconds): <input type="number" step="0.001" name="fp1" required></label><br>
+            <label>FP2 Lap Time (seconds): <input type="number" step="0.001" name="fp2" required></label><br>
+            <label>FP3 Lap Time (seconds): <input type="number" step="0.001" name="fp3" required></label><br>
+            <label>Quali Lap Time (seconds): <input type="number" step="0.001" name="quali" required></label><br>
+            <button type="submit">Predict</button>
+        </form>
+
+          <p id="result"></p>
+
+          <script src="/front-end/script.js"></script>
+    </body>
+</html>
