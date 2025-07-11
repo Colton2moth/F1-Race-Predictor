@@ -22,3 +22,11 @@ document.getElementById("predict-form").addEventListener("submit", async functio
     document.getElementById("result").textContent =
         data.prediction === 1 ? "Will Podium 🏆" : "Will Not Podium ❌";
 });
+
+
+
+const newSetBtn = document.getElementById('new-set-btn');
+const formBox = document.getElementById('form-box');
+    newSetBtn.addEventListener('click', () => {
+      formBox.style.display = 'block';
+    });
