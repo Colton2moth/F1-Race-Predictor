@@ -1,5 +1,7 @@
+//ALL CODE REGARING THE INPUT FORM MUST GO UNDER THE FETCH STATEMENT IN A .THEN BLOCK ! ! !
+
 // Loads in input-form whenever a div with the id, input-form-container, is present
-fetch("/front-end/HTML/input-form.html")  //ALL CODE REGARING THE INPUT FORM MUST GO UNDER THIS FETCH STATEMENT IN A .THEN BLOCK ! ! !
+fetch("/front-end/HTML/input-form.html")
     .then(res => res.text()) // turns file into text/html data
     .then(html => {
         document.getElementById("input-form-container").innerHTML = html; // plug, input-form, into, input-form-container, div
@@ -12,6 +14,10 @@ fetch("/front-end/HTML/input-form.html")  //ALL CODE REGARING THE INPUT FORM MUS
     });
     })
 
+//--------------------------------------------------------------------------------------------------------
+
+// Code for when the user submits the input-form
+// Sends all the data to the model then spits out some output to display the result
 document.getElementById("predict-form").addEventListener("submit", async function(e) {
     e.preventDefault();
 
@@ -36,6 +42,3 @@ document.getElementById("predict-form").addEventListener("submit", async functio
     document.getElementById("result").textContent =
         data.prediction === 1 ? "Will Podium 🏆" : "Will Not Podium ❌";
 });
-
-
-
