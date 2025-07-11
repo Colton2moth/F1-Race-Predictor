@@ -7,30 +7,29 @@ import numpy as np
 app = Flask(__name__)
 CORS(app)
 
-# Load your trained model
-model = joblib.load("podium_model.pkl")  # adjust name if needed
+# Load trained model
+model = joblib.load("podium_model.pkl")
 
-
-@app.route('/predict', methods=['POST'])
+# Tells FLASK to run, predict(), when a, POST, request is sent to, /predict
+@app.route('/predict', methods=['POST']) 
 def predict():
     data = request.get_json()
 
-    # Raw inputs
-    circuit = data.get('circuit')  # string
+    circuit = data.get('circuit')
     fp1 = data.get('fp1')
     fp2 = data.get('fp2')
     fp3 = data.get('fp3')
     quali = data.get('quali')
 
-    # Validate
+    # Error handeling incase inputs are missing
     if None in (circuit, fp1, fp2, fp3, quali):
         return jsonify({'error': 'Missing inputs'}), 400
 
-    # Derived features
+    # Diffrence in lap times
     fp2_minus_fp1 = fp2 - fp1
     fp3_minus_fp2 = fp3 - fp2
 
-    # Create DataFrame
+    # Creating a directory
     input_df = pd.DataFrame([{
         'circuit': circuit,
         'fp1_time': fp1,
@@ -41,17 +40,17 @@ def predict():
         'fp3_minus_fp2': fp3_minus_fp2
     }])
 
-    # Match training encoding
+    # To match training encoding
     input_df = pd.get_dummies(input_df)
-    
-    # Align columns with training set
+
     for col in model.feature_names_in_:
         if col not in input_df.columns:
-            input_df[col] = 0  # add missing dummy columns
+            input_df[col] = 0
 
-    input_df = input_df[model.feature_names_in_]  # order correctly
+    # Order correctly
+    input_df = input_df[model.feature_names_in_]  
 
-    # Predict
+    # Gets the prediction then returns the prediction as a JSON responce
     pred = int(model.predict(input_df)[0])
     return jsonify({'prediction': pred})
 

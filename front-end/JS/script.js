@@ -1,3 +1,17 @@
+// Loads in input-form whenever a div with the id, input-form-container, is present
+fetch("/front-end/HTML/input-form.html")  //ALL CODE REGARING THE INPUT FORM MUST GO UNDER THIS FETCH STATEMENT IN A .THEN BLOCK ! ! !
+    .then(res => res.text()) // turns file into text/html data
+    .then(html => {
+        document.getElementById("input-form-container").innerHTML = html; // plug, input-form, into, input-form-container, div
+    })
+    .then(html => {
+        const newSetBtn = document.getElementById('new-set-btn');
+        const formBox = document.getElementById('form-box');
+        newSetBtn.addEventListener('click', () => {
+        formBox.style.display = 'block';
+    });
+    })
+
 document.getElementById("predict-form").addEventListener("submit", async function(e) {
     e.preventDefault();
 
@@ -25,8 +39,3 @@ document.getElementById("predict-form").addEventListener("submit", async functio
 
 
 
-const newSetBtn = document.getElementById('new-set-btn');
-const formBox = document.getElementById('form-box');
-    newSetBtn.addEventListener('click', () => {
-      formBox.style.display = 'block';
-    });
