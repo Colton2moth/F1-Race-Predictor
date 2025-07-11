@@ -37,7 +37,7 @@ cd F1-Race-Predictor
 
 ### 2. Backend Setup (Flask + Model)
 
-#### Step 1: Create a Virtual Environment (once per machine)
+#### Step 1: Create a Virtual Environment (only need to do once)
 
 ```bash
 cd back-end-bridge
@@ -55,11 +55,6 @@ env\Scripts\Activate.ps1
 **Windows CMD**
 ```cmd
 venv\Scripts ctivate.bat
-```
-
-**Mac/Linux**
-```bash
-source venv/bin/activate
 ```
 
 ---
@@ -148,4 +143,4 @@ deactivate
 
 ## 👤 Author
 
-Created by Gwantana Kiboigo.
+Created by Gwantana Kiboigo
