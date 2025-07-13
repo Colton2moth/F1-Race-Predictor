@@ -48,8 +48,8 @@ python -m venv venv
 
 **Windows PowerShell**
 ```bash
-.
-env\Scripts\Activate.ps1
+cd ..
+.\venv\Scripts\Activate.ps1
 ```
 
 **Windows CMD**
@@ -64,7 +64,7 @@ venv\Scripts ctivate.bat
 Make sure your venv is active and run:
 
 ```bash
-pip install pandas numpy flask flask-cors joblib scikit-learn
+pip install pandas numpy flask flask-cors joblib scikit-learn send_from_directory
 ```
 
 ---
@@ -72,6 +72,7 @@ pip install pandas numpy flask flask-cors joblib scikit-learn
 #### Step 4: Run the Flask Backend
 
 ```bash
+cd back-end-bridge
 python app.py
 ```
 

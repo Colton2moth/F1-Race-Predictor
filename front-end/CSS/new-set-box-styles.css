@@ -9,22 +9,10 @@
       width: fit-content;
     }
 
-    #open-form-btn {
-      display: none;
-      margin-left: 0.5rem;
-    }
-
-    #new-set-btn {
-      font-weight: bold;
+    #new-set-button {
       border-radius: 0.5rem;
       padding: 0.4rem;
       background: white;
       border: 1px solid gray;
       cursor: pointer;
-    }
-
-    #plus-icon {
-      color: purple;
-      font-size: 1.1rem;
-      margin-left: 0.3rem;
     }

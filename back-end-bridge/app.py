@@ -1,10 +1,10 @@
-import pandas as pd
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import joblib
-import numpy as np
+import pandas as pd
 
-app = Flask(__name__)
+# Setup Flask with proper static folder
+app = Flask(__name__, static_folder='../front-end', static_url_path='/front-end')
 CORS(app)
 
 # Load trained model
@@ -50,7 +50,7 @@ def predict():
     # Order correctly
     input_df = input_df[model.feature_names_in_]  
 
-    # Gets the prediction then returns the prediction as a JSON responce
+    # Gets the prediction then returns the prediction as a JSON response
     pred = int(model.predict(input_df)[0])
     return jsonify({'prediction': pred})
 
