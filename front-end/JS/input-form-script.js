@@ -9,7 +9,7 @@ fetch("/front-end/HTML/input-form.html")
     document.getElementById("input-form-container").innerHTML = html; // plug, input-form, into, input-form-container, div
 
     const newSetBtn = document.getElementById('new-set-button');
-    const formBox = document.getElementById('form-box');
+    const formBox = document.getElementById('set-box');
     newSetBtn.addEventListener('click', () => {
         formBox.style.display = 'block';
     });
@@ -19,7 +19,7 @@ fetch("/front-end/HTML/input-form.html")
     document.getElementById("input-form").addEventListener("submit", async function(e) {
         e.preventDefault();
 
-        const circuit = this.circuit.value;
+        const circuit = this.circuit_name.value;
         const fp1 = parseFloat(this.fp1.value);
         const fp2 = parseFloat(this.fp2.value);
         const fp3 = parseFloat(this.fp3.value);
@@ -32,12 +32,12 @@ fetch("/front-end/HTML/input-form.html")
         });
 
         if (!res.ok) {
-            document.getElementById("result").textContent = "Error occurred.";
+            document.getElementById("results-text").textContent = "Error occurred.";
             return;
         }
 
         const data = await res.json();
-        document.getElementById("result").textContent = data.prediction === 1 ? "Will Podium 🏆" : "Will Not Podium ❌";
+        document.getElementById("results-text").textContent = data.prediction === 1 ? "Will Podium 🏆" : "Will Not Podium ❌";
     });
 })
 

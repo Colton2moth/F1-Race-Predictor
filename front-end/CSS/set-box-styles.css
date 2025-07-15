@@ -1,0 +1,129 @@
+/* FORMATTING FOR THE NEW SET BUTTON */ 
+
+#new-set-button {
+  background: white;
+
+  border: .2rem solid rgb(0, 0, 0);
+  border-radius: 0.5rem;
+
+  margin: 0;
+  padding: 0rem;
+  padding-top: .4rem;
+  padding-bottom: .35rem;
+  padding-left: .4rem;
+  padding-right: .4rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .3rem;
+
+  height: fit-content;
+
+  vertical-align: middle;
+  text-align: center;
+  line-height: 1; 
+
+  cursor: pointer;
+}
+
+#new-set-button-text {
+  font-weight: 800;
+
+  vertical-align: middle;
+}
+
+#new-set-button .material-symbols-rounded {
+  font-variation-settings: 'FILL' 0, 'wght' 700, 'GRAD' 200, 'opsz' 48;
+}
+
+/*-----------------------------------------------------------------------------------------------------*/
+
+/* DEFAULT SETTINGS FOR THE ACUTAL SET BOX */
+
+#set-box {
+    display: none;
+    border: .3rem solid black;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-top: 1rem;
+    width: fit-content;
+}
+
+/*-----------------------------------------------------------------------------------------------------*/
+
+/* DEFAULT SETTING FOR THE INPUTS */
+
+#input-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .75rem;
+}
+
+#driver-section,
+#circuit-section,
+.lap-time-input {
+  display: flex;
+  align-items: center;
+
+  margin: 0;
+  margin-bottom: .5rem;
+
+  gap: .75rem;
+}
+
+#driver-section-text,
+#circuit-section-text,
+#time-input-text {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+#driver-section input[type="text"],
+#circuit,
+#set-box  input[type="number"] {
+  border: .1rem solid black;
+  border-radius: .5rem;
+
+  height: 1.7rem;
+  width: 6rem;
+
+  font-size: 1rem;
+}
+
+#driver-section input[type="text"] {
+  width: 9rem;
+}
+
+#circuit {
+  width: 11rem;
+}
+
+/*-----------------------------------------------------------------------------------------------------*/
+
+/* PREDICTION STYLES */
+
+#predict-button {
+  border: .1rem solid black;
+  border-radius: .5rem;
+
+  padding: 0;
+  margin: 0;
+  height: 2rem;
+  width: 6rem;
+
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+#results {
+  display: flex;
+  justify-content: center;
+
+  padding-top: .7rem;
+}
+
+#results-text {
+
+}

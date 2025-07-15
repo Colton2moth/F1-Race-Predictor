@@ -3,7 +3,7 @@ from flask_cors import CORS
 import joblib
 import pandas as pd
 
-# Setup Flask with proper static folder
+# Setup Flask and the corresponding static static folder
 app = Flask(__name__, static_folder='../front-end', static_url_path='/front-end')
 CORS(app)
 

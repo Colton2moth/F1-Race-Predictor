@@ -52,19 +52,12 @@ cd ..
 .\venv\Scripts\Activate.ps1
 ```
 
-**Windows CMD**
-```cmd
-venv\Scripts ctivate.bat
-```
-
----
-
 #### Step 3: Install Required Packages
 
 Make sure your venv is active and run:
 
 ```bash
-pip install pandas numpy flask flask-cors joblib scikit-learn send_from_directory
+pip install pandas numpy flask flask-cors joblib scikit-learn
 ```
 
 ---
