@@ -14,6 +14,22 @@ fetch("/front-end/HTML/input-form.html")
         formBox.style.display = 'block';
     });
 
+    const circuitBoxes = document.querySelectorAll('.circuit-box');
+    const selectedInput = document.getElementById('selected-circuit');
+
+    circuitBoxes.forEach(box => {
+    box.addEventListener('click', () => {
+        // Remove .selected-circuit from all
+        circuitBoxes.forEach(b => b.classList.remove('selected-circuit'));
+
+        // Add to clicked one
+        box.classList.add('selected-circuit');
+
+        // Update hidden input
+        selectedInput.value = box.dataset.value;
+    });
+    });
+
     // Code for when the user submits the input-form
     // Sends all the data to the model then spits out some output to display the result
     document.getElementById("form").addEventListener("submit", async function(e) {

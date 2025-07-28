@@ -49,12 +49,21 @@
 
 .circuit-box {
     display: flex;
-    background-color: #ffffff;
+    background: #ffffff;
     justify-content: center;
     align-items: center;
     border-radius: 1rem;
     width: 10.5rem;
     height: 2.7rem;
+}
+
+.circuit-box:hover {
+  background: linear-gradient(180deg, #ffffff 0%, #fffdb8 60%, #fffb85 100%);
+  cursor: pointer;
+}
+
+.circuit-box.selected-circuit {
+  background: linear-gradient(180deg, #ffffff 0%, #b3ffb8 60%, #85ff8d 100%);
 }
 
 #lap-time-section {
