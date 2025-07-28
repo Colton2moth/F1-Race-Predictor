@@ -9,17 +9,17 @@ fetch("/front-end/HTML/input-form.html")
     document.getElementById("input-form-container").innerHTML = html; // plug, input-form, into, input-form-container, div
 
     const newSetBtn = document.getElementById('new-set-button');
-    const formBox = document.getElementById('set-box');
+    const formBox = document.getElementById('input-form');
     newSetBtn.addEventListener('click', () => {
         formBox.style.display = 'block';
     });
 
     // Code for when the user submits the input-form
     // Sends all the data to the model then spits out some output to display the result
-    document.getElementById("input-form").addEventListener("submit", async function(e) {
+    document.getElementById("form").addEventListener("submit", async function(e) {
         e.preventDefault();
 
-        const circuit = this.circuit_name.value;
+       const circuit = document.querySelector('.selected-circuit').dataset.value;
         const fp1 = parseFloat(this.fp1.value);
         const fp2 = parseFloat(this.fp2.value);
         const fp3 = parseFloat(this.fp3.value);

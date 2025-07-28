@@ -1,0 +1,58 @@
+#input-form{
+    display: none;
+    background: #ff69696d;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-top: 1rem;
+    width: fit-content;
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    gap: .75rem;
+    color: #000000;
+}
+
+.section {
+    margin: 0;
+    padding: 0;
+}
+
+.section-name {
+    display: flex;
+    align-items: center;
+}
+
+.input-type {
+      border: none;
+  border-radius: .5rem;
+
+  height: 1.7rem;
+
+  font-size: 1rem;
+}
+
+.circuit-row {
+    display: flex;
+    gap: 1rem;
+}
+
+#circuit-options {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    gap: 1rem;
+}
+
+.circuit-box {
+    display: flex;
+    background-color: #ffffff;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    width: 10.5rem;
+    height: 2.7rem;
+}

@@ -67,10 +67,11 @@ pip install pandas numpy flask flask-cors joblib scikit-learn
 ```bash
 cd back-end-bridge
 python app.py
+
 ```
 
 Server should start at:  
-(http://127.0.0.1:5500/front-end/HTML/index.html)
+(http://127.0.0.1:5500/front-end/html/index.html)
 
 ---
 

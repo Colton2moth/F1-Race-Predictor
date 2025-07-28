@@ -1,0 +1,40 @@
+#new-set-button {
+  background: #ff20206d;
+  color: #000000;
+
+  border-radius: 5rem;
+  border: none;
+
+  margin: 0;
+  padding: 0rem;
+  padding-top: .4rem;
+  padding-bottom: .35rem;
+  padding-left: .4rem;
+  padding-right: .4rem;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: .3rem;
+
+  height: 3rem;
+  width: 8rem;
+
+  vertical-align: middle;
+  text-align: center;
+
+  cursor: pointer;
+}
+
+#new-set-button-text {
+  font-weight: 600;
+  font-size: 1rem;
+
+  vertical-align: middle;
+}
+
+#new-set-button .material-symbols-rounded {
+  font-size: 1.5rem;
+  font-variation-settings: 'FILL' 0, 'wght' 700, 'GRAD' 200, 'opsz' 48;
+}
