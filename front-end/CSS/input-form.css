@@ -24,6 +24,7 @@
     display: flex;
     align-items: center;
     font-weight: 700;
+    margin-bottom: .5rem;
 }
 
 .input-type {
@@ -35,8 +36,9 @@ background: #0000001b;
   height: 1.7rem;
 
   font-size: 1rem;
-
+    width: 10rem;
   margin-top: .3rem;
+  padding-left: .45rem;
   
 }
 
@@ -62,7 +64,7 @@ background: #0000001b;
     justify-content: center;
     align-items: center;
 
-    width: 10.5rem;
+    width: 9rem;
     height: 100%;
 
     border-radius: .4rem;
@@ -71,14 +73,32 @@ background: #0000001b;
 }
 
 .circuit-box:hover {
-  background: #fffb85;
+  background: #ee000016;
+  
   cursor: pointer;
-  box-shadow: 0 0 0.5rem 0 rgba(255, 255, 160, 0.7);
 }
 
-.circuit-box.selected-circuit {
-  background: #85ff8d;
-  box-shadow: 0 0 0.5rem 0 #85ff8d;
+.circuit-box.selected-circuit,
+.circuit-box.selected-circuit:hover {
+  background: #ee000016;
+  color: #000000;
+
+ box-shadow: inset 0 0 0 .1rem #ee0000,
+  0 0 .4rem 0 #ff0000;
+
+  font-weight: 700;
+  
+  
+}
+
+.circuit-box.selected-circuit .track-name,
+.circuit-box.selected-circuit:hover .track-name {
+  font-weight: 700;
+}
+
+.track-name {
+    font-size: .9rem;
+    font-weight: 540;
 }
 
 #lap-time-section {
