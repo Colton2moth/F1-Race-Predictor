@@ -1,6 +1,6 @@
 #input-form{
     display: none;
-    background: #ff69696d;
+    background: #ffffff;
     border-radius: 1rem;
     padding: 1rem;
     margin-top: 1rem;
@@ -23,12 +23,15 @@
 .section-name {
     display: flex;
     align-items: center;
+    font-weight: 700;
 }
 
 .input-type {
-      border: none;
-  border-radius: .5rem;
+    border: none;
+border-radius: .3rem;
 
+
+background: #0000001b;
   height: 1.7rem;
 
   font-size: 1rem;
@@ -41,6 +44,9 @@
     display: flex;
     gap: 1rem;
     margin-bottom: 1rem;
+
+    height: 3rem;
+    
 }
 
 #circuit-options {
@@ -52,24 +58,27 @@
 
 .circuit-box {
     display: flex;
-    background: #ffffff;
+    
     justify-content: center;
     align-items: center;
-    border-radius: 1rem;
-    border-color: #0000009b;
-    border-style:solid;
-    border-width: .27rem;
+
     width: 10.5rem;
-    height: 2.7rem;
+    height: 100%;
+
+    border-radius: .4rem;
+    background: #0000001b;
+    margin: 0;
 }
 
 .circuit-box:hover {
-  background: linear-gradient(180deg, #ffffff 0%, #fffdb8 60%, #fffb85 100%);
+  background: #fffb85;
   cursor: pointer;
+  box-shadow: 0 0 0.5rem 0 rgba(255, 255, 160, 0.7);
 }
 
 .circuit-box.selected-circuit {
-  background: linear-gradient(180deg, #ffffff 0%, #b3ffb8 60%, #85ff8d 100%);
+  background: #85ff8d;
+  box-shadow: 0 0 0.5rem 0 #85ff8d;
 }
 
 #lap-time-section {

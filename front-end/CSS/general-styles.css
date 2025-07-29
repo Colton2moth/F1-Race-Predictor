@@ -5,7 +5,7 @@ body {
     margin: 0;
     padding: 0;
     
-    background-image: linear-gradient(1800deg, #ffc1c1 40%, #ffffff, #ffc1c1 40%);
+    background: #101010;
     min-height: 100vh;
 }
 
@@ -23,7 +23,7 @@ body {
 }
 
 #title {
-    color: #000000;
+    color: #ffffff;
     font-weight: 600;;
     font-size: 3rem;
     margin: 0;
