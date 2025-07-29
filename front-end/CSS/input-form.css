@@ -32,11 +32,15 @@
   height: 1.7rem;
 
   font-size: 1rem;
+
+  margin-top: .3rem;
+  
 }
 
 .circuit-row {
     display: flex;
     gap: 1rem;
+    margin-bottom: 1rem;
 }
 
 #circuit-options {
@@ -44,7 +48,6 @@
     flex-direction: column;
     margin: 0;
     padding: 0;
-    gap: 1rem;
 }
 
 .circuit-box {
@@ -53,6 +56,9 @@
     justify-content: center;
     align-items: center;
     border-radius: 1rem;
+    border-color: #0000009b;
+    border-style:solid;
+    border-width: .27rem;
     width: 10.5rem;
     height: 2.7rem;
 }
