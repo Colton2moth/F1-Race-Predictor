@@ -34,7 +34,7 @@ body {
     height: 2.5rem;
 }
 
-#set-container {
+#main-content {
   width: 100%;
   display: flex;
   align-items: center;

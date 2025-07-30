@@ -70,9 +70,7 @@ python app.py
 
 ```
 
-Server should start at:  
-(http://127.0.0.1:5500/front-end/html/index.html)
-(if this doesnt not work, rightclick index.html and open it directly)
+Right click index.html, opening it directly, and you'll see the website
 
 ---
 
