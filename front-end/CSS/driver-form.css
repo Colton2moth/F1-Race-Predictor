@@ -1,5 +1,5 @@
 .driver-form{
-    background: #ffffff;
+    background: #303030;
     
     position: relative;
     display: none;
@@ -11,14 +11,14 @@
     border-radius: 1rem;
 }
 
-#input-form {
+#form-object {
     display: flex;
     flex-direction: column;
     gap: 1rem;
     
     align-items: left;
     
-    color: #000000;
+    color: #ffffff;
 }
 
 .section {
@@ -36,9 +36,10 @@
 }
 
 .input-type {
-    background: #0000001b;
+    background-color: #0000004b;
+    color: inherit;
 
-    height: 1.7rem;
+    height: 2rem;
     width: 10rem;
 
     margin-top: .3rem;
@@ -48,6 +49,19 @@
     border-radius: .3rem;
 
     font-size: 1rem;
+
+    transition: all .2s ease;
+}
+
+.input-type:focus {
+    outline: none;
+
+    box-shadow: inset 0 0 .6rem -.2rem #fff700;
+}
+
+.input-type:not(select):not(:placeholder-shown):not(:focus),
+select.input-type:valid {
+  box-shadow: inset 0 0 .6rem -.2rem #26ff00;
 }
 
 #button-section {
@@ -58,7 +72,7 @@
 
 .delete-driver-button,
 .add-driver-button {
-    background: #cccccc;
+    color: #ffffff;
 
     position: absolute;
     display: flex;
@@ -70,29 +84,53 @@
 
     border: none;
     border-radius: .5rem;
+
+    transition: all .1s ease;
 }
 
 .add-driver-button {
+    background-color: #4c87ff;
     top: .9rem;
 }
 
 .delete-driver-button {
+    background-color: #d90000;
     bottom: .9rem;
 }
 
-.add-driver-button .material-symbols-rounded,
-.delete-driver-button .material-symbols-rounded {
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+.add-driver-button .material-symbols-rounded {
+    font-variation-settings: 'FILL' 1, 'wght' 800, 'GRAD' 0, 'opsz' 48;
     font-size: 1.5rem;
 }
 
-#add-driver-button:hover,
-#delete-driver-button:hover {
+.delete-driver-button .material-symbols-rounded {
+    font-variation-settings: 'FILL' 0, 'wght' 800, 'GRAD' 0, 'opsz' 48;
+    font-size: 1.5rem;
+}
+
+.add-driver-button:hover,
+.delete-driver-button:hover {
     cursor: pointer;
+    transform: scale(1.05);
+    
+    box-shadow: 0 0 .7rem 0 #1a1a1a;
+}
+
+.add-driver-button:hover {
+    background-color: #5c92ff;
+}
+
+.delete-driver-button:hover {
+    background-color: #e00000;
 }
 
 #driver-name {
     width: 12rem;
+    color: #ffffff;
+}
+
+#driver-name-dropdown {
+    border-radius: 3rem;
 }
 
 #circuit-options {
@@ -113,7 +151,7 @@
 }
 
 .circuit-box {
-    background: #0000001b;
+    background-color: #0000004b;
     
     display: flex;
 
@@ -124,33 +162,28 @@
     align-items: center;
 
     border-radius: .4rem;
+
+    transition: all .2s ease;
 }
 
 .circuit-box:hover {
-    background: #ee000016;
+    background-color: #fff70016;
+    box-shadow: inset 0 0 .6rem -.2rem #fff700;
     cursor: pointer;
 }
 
 .circuit-box.selected-circuit,
 .circuit-box.selected-circuit:hover {
-    background: #ee000016;
-    
-    color: #000000;
-    box-shadow: 0 0 .6rem 0 #ff0000;
-
+    background-color: #26ff0016;
+    box-shadow: inset 0 0 .6rem -.2rem #26ff00;
     border-radius: 1rem;
-
-    font-weight: 700;
-}
-
-.circuit-box.selected-circuit .track-name,
-.circuit-box.selected-circuit:hover .track-name {
-    font-weight: 500;
 }
 
 .track-name {
     font-size: .9rem;
-    font-weight: 540;
+    font-weight: 200;
+
+    letter-spacing: 0.05rem;
 }
 
 #lap-time-section {

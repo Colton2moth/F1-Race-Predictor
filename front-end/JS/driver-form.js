@@ -96,8 +96,10 @@ document.addEventListener("DOMContentLoaded", () => {
         // When clicking a new circuit box...
         circuitBoxes.forEach(currentCircuitBox => {
             currentCircuitBox.addEventListener("click", () => {
+                console.log("A circuit box was clicked.")
+
                 // Unselect previously selected circuit
-                const currentSelected = wrapper.querySelector(".selected-circuit");
+                const currentSelected = singleDriver.querySelector(".selected-circuit");
                 if (currentSelected) {
                     currentSelected.classList.remove("selected-circuit");
                 }
