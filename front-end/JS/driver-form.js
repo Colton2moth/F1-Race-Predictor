@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
             // Listener for NEW RACE button
             newRaceButton.addEventListener("click", () => {
                 addNewDriverForm();
-
                 newRaceButtonVisibility();
             });
 
@@ -34,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Adding a new driver
                 if (addButtonClicked) {
                     addNewDriverForm();
-
                     newRaceButtonVisibility();
                     return;
                 }
@@ -45,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     if (formToRemove) {
                         formToRemove.classList.remove("show");
-                        formToRemove.classList.add("hide");
+                        formToRemove.classList.add("removing");
 
                         // Wait for the animation to finish before removing the form
                         setTimeout(() => {
@@ -62,7 +60,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Updates visibility of the NEW RACE button depending on the amount of forms on the screen
     function newRaceButtonVisibility() {
-        newRaceButton.style.display = (driverFormCount === 0) ? "flex" : "none";
+        if(driverFormCount > 0) {
+            newRaceButton.classList.add("hidden");
+        } else {
+            newRaceButton.classList.remove("hidden");
+            newRaceButton.style.display = "flex";
+        }
     }
 
     // Adds a new input form and initializes it
@@ -84,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
     allDrivers.appendChild(driverForm);
 
     requestAnimationFrame(() => {
-        driverForm.classList.remove("hide");
+        driverForm.classList.remove("hidden");
         driverForm.classList.add("show");
     });
 

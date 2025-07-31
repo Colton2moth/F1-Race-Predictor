@@ -1,9 +1,9 @@
 .driver-form {
     background: #303030;
     
-    position: relative;
     width: fit-content;
 
+    margin: 0;
     padding: 1rem;
     
     border-radius: 1rem;
@@ -16,16 +16,22 @@
     pointer-events: none;
 }
 
-.driver-form.hide {
+.driver-form.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.driver-form.hidden {
     opacity: 0;
     transform: translateY(-10px);
     pointer-events: none;
 }
 
-.driver-form.show {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
+.driver-form.removing {
+    opacity: 0;
+    transform: translateX(10px);
+    pointer-events: none;
 }
 
 #form-object {
