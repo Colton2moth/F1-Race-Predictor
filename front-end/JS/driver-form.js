@@ -98,6 +98,22 @@ document.addEventListener("DOMContentLoaded", () => {
     newRaceButtonVisibility();
 }
 
+    // To check if an individual form has been completed
+    function checkFormComplete(driverForm) {
+    const driverSelect = driverForm.querySelector("select");
+    const circuitSelected = driverForm.querySelector(".selected-circuit");
+    const inputs = driverForm.querySelectorAll("input[required]");
+
+    const allInputsFilled = [...inputs].every(input => input.value.trim() !== "");
+    const driverValid = driverSelect && driverSelect.value !== "";
+    const circuitValid = circuitSelected !== null;
+
+    if (allInputsFilled && driverValid && circuitValid) {
+        driverForm.classList.add("completed");
+    } else {
+        driverForm.classList.remove("completed");
+    }
+    }
 
 
     // Applies logic for each driver-form individually
@@ -106,6 +122,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const circuitBoxes = singleDriver.querySelectorAll(".circuit-box");
         const selectedCircuit = singleDriver.querySelector(".selected-circuit");
         
+        // Everytime the user clicks, check if this driver form has been completed
+        document.addEventListener("click", () => {
+            checkFormComplete(singleDriver);
+        })
+
         // When clicking a new circuit box...
         circuitBoxes.forEach(currentCircuitBox => {
             currentCircuitBox.addEventListener("click", () => {

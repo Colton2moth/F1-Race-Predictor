@@ -34,6 +34,13 @@
     pointer-events: none;
 }
 
+.driver-form.completed {
+    box-shadow: 0 0 1rem 0rem #26ff00a8;
+    border-radius: 1rem;
+
+    transition: box-shadow 0.3s ease;
+}
+
 #form-object {
     display: flex;
     flex-direction: column;
