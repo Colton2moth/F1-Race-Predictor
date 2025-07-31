@@ -10,14 +10,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const allDrivers = document.getElementById("all-drivers");
     const newRaceButton = document.getElementById("new-race-button");
 
-    let newDriverHTML = "";
+    let driverFormHTML = "";
     let driverFormCount = 0;
 
     // Fetch the form template once
     fetch("/front-end/HTML/driver-form.html")
         .then(res => res.text())
         .then(html => {
-            newDriverHTML = html;
+            driverFormHTML = html;
 
             // Listener for NEW RACE button
             newRaceButton.addEventListener("click", () => {
@@ -44,11 +44,16 @@ document.addEventListener("DOMContentLoaded", () => {
                     const formToRemove = deleteButtonClicked.closest(".driver-form");
 
                     if (formToRemove) {
-                        formToRemove.remove();
-                        
-                        driverFormCount = Math.max(0, driverFormCount - 1);
-                        console.log("Form count:", driverFormCount);
-                        newRaceButtonVisibility();
+                        formToRemove.classList.remove("show");
+                        formToRemove.classList.add("hide");
+
+                        // Wait for the animation to finish before removing the form
+                        setTimeout(() => {
+                            formToRemove.remove();
+                            driverFormCount = Math.max(0, driverFormCount - 1);
+                            console.log("Form count:", driverFormCount);
+                            newRaceButtonVisibility();
+                        }, 300);
                     }
                     return;
                 }
@@ -62,30 +67,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Adds a new input form and initializes it
     function addNewDriverForm() {
-        if (!newDriverHTML) {
-            console.log("Error: newDriverHTML cannot be found.")
-            return;
-        }
-
-        const temp = document.createElement("div");
-        temp.innerHTML = newDriverHTML;
-
-        const driverForm = temp.querySelector(".driver-form");
-        if (!driverForm) {
-            console.log("driver-form cannot be found.")   
-            return;
-        }
-
-        driverForm.style.display = "block";
-        allDrivers.appendChild(driverForm);
-
-        driverFormCount++;
-        console.log("Form count:", driverFormCount);
-
-        driverLogic(driverForm);
-        
-        newRaceButtonVisibility();
+    if (!driverFormHTML) {
+        console.log("Error: driverFormHTML cannot be found.");
+        return;
     }
+
+    const temp = document.createElement("div");
+    temp.innerHTML = driverFormHTML;
+
+    const driverForm = temp.querySelector(".driver-form");
+        if (!driverForm) {
+            console.log("driver-form cannot be found.");   
+            return;
+        }
+
+    allDrivers.appendChild(driverForm);
+
+    requestAnimationFrame(() => {
+        driverForm.classList.remove("hide");
+        driverForm.classList.add("show");
+    });
+
+    driverFormCount++;
+    console.log("Form count:", driverFormCount);
+
+    driverLogic(driverForm);
+    newRaceButtonVisibility();
+}
+
+
 
     // Applies logic for each driver-form individually
     function driverLogic(singleDriver) {
