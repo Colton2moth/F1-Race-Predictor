@@ -1,4 +1,4 @@
-#new-race-button {
+.new-race-button {
   background: #ee0000;
   color: #ffffff;
 
@@ -25,25 +25,25 @@
   transition: all .2s ease;
 }
 
-#new-race-button.hidden {
+.new-race-button.hidden {
   opacity: 0;
   transform: translateY(-10px);
+
+
   pointer-events: none;
 }
 
-#new-race-button:hover{
+.new-race-button:hover{
   transform: scale(1.03);
   box-shadow: 0 0 1.5rem 0 #ee00007e;
 }
 
-#new-race-button-text {
+.new-race-button-text {
   font-weight: 600;
   font-size: 1rem;
-
-  vertical-align: middle;
 }
 
-#new-race-button .material-symbols-rounded {
+.new-race-button .material-symbols-rounded {
   font-size: 1.5rem;
   font-variation-settings: 'FILL' 0, 'wght' 700, 'GRAD' 200, 'opsz' 48;
 }

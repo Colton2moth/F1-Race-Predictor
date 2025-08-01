@@ -1,0 +1,81 @@
+
+.circuit-section {
+    background: #303030;
+    color: #ffffff;
+
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+
+    width: fit-content;
+
+    margin: 0;
+    padding: 1rem;
+    
+    border-radius: 1rem;
+
+    transition: all .3s ease;
+}
+
+.circuit-section.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.circuit-section.hidden {
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+}
+
+#circuit-section-name {
+    font-size: 1.3rem;
+    font-weight: 500;
+    padding-bottom: 1rem;
+}
+
+.circuit-row {
+    display: flex;
+    gap: 1rem;
+
+    height: 3rem;
+
+    margin-bottom: 1rem;
+}
+
+.circuit-box {
+    background-color: #0000004b;
+    
+    display: flex;
+
+    width: 9rem;
+    height: 100%;
+    
+    justify-content: center;
+    align-items: center;
+
+    border-radius: .4rem;
+
+    transition: all .2s ease;
+}
+
+.circuit-box:hover {
+    background-color: #fff70016;
+    box-shadow: inset 0 0 .6rem -.2rem #fff700;
+    cursor: pointer;
+}
+
+.circuit-box.selected-circuit,
+.circuit-box.selected-circuit:hover {
+    background-color: #26ff0016;
+    box-shadow: inset 0 0 .6rem -.2rem #26ff00;
+    border-radius: 1rem;
+}
+
+.track-name {
+    font-size: .9rem;
+    font-weight: 200;
+
+    letter-spacing: 0.05rem;
+}
