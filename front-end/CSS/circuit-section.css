@@ -58,6 +58,7 @@
 
 .circuit-box {
     background-color: #0000004b;
+    color: #9a9a9a;
     
     display: flex;
 
@@ -74,6 +75,7 @@
 
 .circuit-box:hover {
     background-color: #fff70016;
+    color: #ffffff;
     box-shadow: inset 0 0 .6rem -.2rem #fff700;
     cursor: pointer;
 }
@@ -81,6 +83,7 @@
 .circuit-box.selected-circuit,
 .circuit-box.selected-circuit:hover {
     background-color: #26ff0016;
+    color: #ffffff;
     box-shadow: inset 0 0 .6rem -.2rem #26ff00;
     border-radius: 1rem;
 }
