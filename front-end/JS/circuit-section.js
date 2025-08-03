@@ -1,4 +1,4 @@
-import { wait, setCircuitSectionHTML } from "./shared.js";
+import { wait } from "./shared.js";
 import { addNewDriverForm, driverFormCount, resetDriverFormCount } from "./driver-forms.js";
 import { newRaceButtonVisibility } from "./new-race-button.js"
 
