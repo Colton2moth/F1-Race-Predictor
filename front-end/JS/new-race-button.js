@@ -1,8 +1,9 @@
-import { wait, circuitSectionVisable } from "./shared.js";
+import { wait } from "./shared.js";
 import { addCircuitSection } from "./circuit-section.js";
 
 let newRaceButton = null;
 
+// To add the New Race button 
 document.addEventListener("DOMContentLoaded", () => {
   const newRaceButtonContainer = document.getElementById("new-race-button-container");
 
@@ -19,23 +20,32 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       newRaceButtonContainer.appendChild(newRaceButton);
-      console.log("New race button is now visible.");
+      console.log("📢 Update: New race button is now visible.");
 
-      newRaceButton.addEventListener("click", async () => {
-        newRaceButton.disabled = true;
-        newRaceButton.classList.add("hidden");
-        await wait(200);
-        newRaceButton.remove();
-        addCircuitSection();
-      });
+      newRaceButtonClicked(newRaceButton);
     });
 });
 
+// When the New Race button is clicked...
+function newRaceButtonClicked(newRaceButton) {
+  newRaceButton.addEventListener("click", async () => {
+    newRaceButton.disabled = true;
+    newRaceButton.classList.add("hidden");
+
+    await wait(200);
+
+    newRaceButton.remove();
+    addCircuitSection();
+    console.log("📢 Update: New race button was clicked.")
+  });
+}
+
+// To update the visibility of the New Race button
 export async function newRaceButtonVisibility() {
   const circuitSectionExists = document.querySelector(".circuit-section") !== null;
 
   if (!newRaceButton) {
-    console.warn("⚠️ newRaceButton is not initialized.");
+    console.warn("⚠️ Error: Cannot find newRaceButton.");
     return;
   }
 
@@ -44,10 +54,10 @@ export async function newRaceButtonVisibility() {
     await wait(200);
       newRaceButton.remove();
   } else {
-    // If button was removed, recreate it
     if (!document.body.contains(newRaceButton)) {
       const container = document.getElementById("new-race-button-container");
       container.appendChild(newRaceButton);
+      console.log("📢 Update: New race button is now visible.")
     }
 
     await wait(300);

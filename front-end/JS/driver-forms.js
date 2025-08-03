@@ -1,47 +1,66 @@
-import { driverFormCount, incrementFormCount, decrementFormCount, fetchDriverFormHTML} from "./shared.js";
+
 import { newRaceButtonVisibility } from "./new-race-button.js"
-import { updateAddDriverButtonVisibility } from "./circuit-section.js"
-
-export function addNewDriverForm() {
-
-    fetchDriverFormHTML()
-        .then(html => {
-
-        if (!html) {
-            console.log("⚠️ Error: driverFormHTML cannot be found.");
-            return;
-        }
-
-        const allDrivers = document.getElementById("all-drivers");
-        if (!allDrivers) {
-        console.log("⚠️ Error: all-drivers container not found.");
-        return;
-        }
-
-        const temp = document.createElement("div");
-        temp.innerHTML = html;
-
-        const driverForm = temp.querySelector(".driver-form");
-        if (!driverForm) {
-            console.log("⚠️ Error: driver-form cannot be found.");
-            return;
-        }
-
-        allDrivers.appendChild(driverForm);
-
-        requestAnimationFrame(() => {
-            driverForm.classList.remove("hidden");
-            driverForm.classList.add("show");
-        });
-
-        incrementFormCount();
-        driverLogic(driverForm);
-        updateAddDriverButtonVisibility();
-    })
+import { updateAddDriverButtonVisibility, noMoreDrivers } from "./circuit-section.js"
+import { wait } from "./shared.js"
 
 
+// Counter for the amount of drivers on screen
+export let driverFormCount = 0;
+export function changeFormCount(num) {
+  if (num == 1) {
+    driverFormCount++;
+  } else if (num == -1) {
+    driverFormCount = Math.max(0, driverFormCount - 1);
+  }
+
+  console.log("📢 Update: Form count:", driverFormCount);
 }
 
+// To reset the form counter
+export function resetDriverFormCount() {
+    driverFormCount = 0;
+}
+
+// To add a new driver
+export async function addNewDriverForm() {
+  const res = await fetch("/front-end/HTML/driver-form.html");
+  const html = await res.text();
+
+    if (!html) {
+        console.log("⚠️ Error: driverFormHTML cannot be found.");
+        return;
+    }
+
+    const allDrivers = document.getElementById("all-drivers");
+    if (!allDrivers) {
+    console.log("⚠️ Error: all-drivers container not found.");
+    return;
+    }
+
+    const temp = document.createElement("div");
+    temp.innerHTML = html;
+
+    const driverForm = temp.querySelector(".driver-form");
+    if (!driverForm) {
+        console.log("⚠️ Error: driver-form cannot be found.");
+        return;
+    }
+
+    allDrivers.appendChild(driverForm);
+
+    requestAnimationFrame(() => {
+        driverForm.classList.remove("hidden");
+        driverForm.classList.add("show");
+    });
+
+    driverLogic(driverForm);
+    updateAddDriverButtonVisibility();
+
+    console.log("📢 Update: A driver was successfully added.");
+    changeFormCount(1);
+}
+
+// To check if a specific driver form has been completed
 function checkFormComplete(driverForm) {
     const driverSelect = driverForm.querySelector("select");
     const inputs = driverForm.querySelectorAll("input[required]");
@@ -54,9 +73,10 @@ function checkFormComplete(driverForm) {
     } else {
         driverForm.classList.remove("completed");
     }
-    }
+}
 
-    function driverLogic(driverForm) {
+// Logic to be applied to each driver
+async function driverLogic(driverForm) {
   const addButton = driverForm.querySelector(".add-driver-button");
   const deleteButton = driverForm.querySelector(".delete-driver-button");
 
@@ -68,24 +88,30 @@ function checkFormComplete(driverForm) {
   }
 
   if (deleteButton) {
-    deleteButton.addEventListener("click", () => {
+    deleteButton.addEventListener("click", async () => {
       driverForm.classList.remove("show");
       driverForm.classList.add("removing");
 
-      setTimeout(() => {
-        driverForm.remove();
-        decrementFormCount();
-        newRaceButtonVisibility();
-        updateAddDriverButtonVisibility();
-      }, 300);
+      await wait(300);
+      
+      driverForm.remove();
+      changeFormCount(-1);
+      console.log("📢 Update: A driver has been deleted.");
+
+      if (driverFormCount == 0){
+        noMoreDrivers();
+      }
+
+      newRaceButtonVisibility();
+      updateAddDriverButtonVisibility();
     });
   }
 
-  // Optional: also attach completion check logic
   const form = driverForm.querySelector("form");
   if (form) {
     form.addEventListener("input", () => {
       checkFormComplete(driverForm);
     });
   }
+  
 }
