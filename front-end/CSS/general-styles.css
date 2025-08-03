@@ -59,4 +59,13 @@ body {
 
     margin-top: 1.5rem;
     gap: 1.5rem;
+
+    opacity: 1;
+
+    transition: all .3s ease;
+}
+
+#all-drivers.hidden {
+    transform: translateX(10px);
+    opacity: 0;
 }

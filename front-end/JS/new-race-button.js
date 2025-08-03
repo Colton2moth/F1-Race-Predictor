@@ -1,4 +1,4 @@
-import { wait, circuitSectionVisable, driverFormCount } from "./shared.js";
+import { wait, circuitSectionVisable } from "./shared.js";
 import { addCircuitSection } from "./circuit-section.js";
 
 let newRaceButton = null;
@@ -31,14 +31,28 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-        export function newRaceButtonVisibility() {
-        if (circuitSectionVisable) {
-            newRaceButton.classList.add("hidden");
-            setTimeout(() => {
-                newRaceButton.remove();
-            }, 200);
-        } else if (!circuitSectionVisable) {
-            newRaceButton.classList.remove("hidden");
-            newRaceButton.style.display = "flex";
-        }
+export async function newRaceButtonVisibility() {
+  const circuitSectionExists = document.querySelector(".circuit-section") !== null;
+
+  if (!newRaceButton) {
+    console.warn("⚠️ newRaceButton is not initialized.");
+    return;
+  }
+
+  if (circuitSectionExists) {
+    newRaceButton.classList.add("hidden");
+    await wait(200);
+      newRaceButton.remove();
+  } else {
+    // If button was removed, recreate it
+    if (!document.body.contains(newRaceButton)) {
+      const container = document.getElementById("new-race-button-container");
+      container.appendChild(newRaceButton);
     }
+
+    await wait(300);
+    newRaceButton.classList.remove("hidden");
+    newRaceButton.disabled = false;
+  }
+}
+

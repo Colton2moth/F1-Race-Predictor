@@ -1,6 +1,6 @@
 .new-race-button {
   background: #ee0000;
-  color: #ffffff;
+  color: #ffffffcc;
 
   border-radius: 5rem;
   border: none;
@@ -35,7 +35,8 @@
 
 .new-race-button:hover{
   transform: scale(1.03);
-  box-shadow: 0 0 1.5rem 0 #ee00007e;
+  box-shadow: 0 0 1.5rem 0 #ee00004d;
+  color: #ffffff;
 }
 
 .new-race-button-text {

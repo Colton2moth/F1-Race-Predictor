@@ -1,14 +1,15 @@
 // circuit-section.js
 
-import { wait, driverFormCount, setCircuitSectionHTML } from "./shared.js";
+import { wait, driverFormCount, setCircuitSectionHTML, resetDriverFormCount } from "./shared.js";
 import { addNewDriverForm } from "./driver-forms.js";
+import { newRaceButtonVisibility } from "./new-race-button.js"
 
 let hasAddedDrivers = false;
 
-export function addCircuitSection() {
-  fetch("/front-end/HTML/circuit-section.html")
-    .then(res => res.text())
-    .then(html => {
+export async function addCircuitSection() {
+    const res = await fetch("/front-end/HTML/circuit-section.html");
+  const html = await res.text();
+
       setCircuitSectionHTML(html);
 
       const circuitContainer = document.getElementById("circuit-container");
@@ -21,6 +22,14 @@ export function addCircuitSection() {
         return;
       }
 
+      const deleteRaceButton = circuitSection.querySelector(".delete-race-section");
+      if (deleteRaceButton) {
+    deleteRaceButton.addEventListener("click", () => {
+      console.log("Delete race button was clicked.");
+          deleteRace(circuitSection);
+        }) 
+      }
+await wait(200);
       circuitContainer.appendChild(circuitSection);
 
       requestAnimationFrame(() => {
@@ -32,7 +41,28 @@ export function addCircuitSection() {
 
       console.log("Circuit options are now visible.");
       setupCircuitSectionListeners(circuitSection);
-    });
+    }
+
+async function deleteRace(circuitSection) {
+  const allDrivers = document.getElementById("all-drivers");
+  const allIndividualDrivers = allDrivers.querySelectorAll(".driver-form");
+
+  allDrivers.classList.add("hidden");
+  await wait(300);
+
+  allIndividualDrivers.forEach(driver => driver.remove());
+
+ resetDriverFormCount();
+  hasAddedDrivers = false;
+
+  allDrivers.classList.remove("hidden");
+
+  circuitSection.classList.add("hidden");
+  await wait(200);
+  circuitSection.remove();
+
+  console.log("Race has been deleted.");
+  newRaceButtonVisibility();
 }
 
 export function updateAddDriverButtonVisibility() {
@@ -68,7 +98,7 @@ function setupCircuitSectionListeners(circuitSection) {
     currentCircuitBox.addEventListener("click", () => {
       console.log("A circuit box was clicked.");
 
-                    if (driverFormCount == 0 && addDriverButton.classList.contains("hidden")) {
+                    if (driverFormCount == 0 && !hasAddedDrivers) {
                     addNewDriverForm();
                     hasAddedDrivers = true;
                     }

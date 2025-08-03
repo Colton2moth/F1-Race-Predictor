@@ -26,6 +26,10 @@ export function decrementFormCount() {
   console.log("Form count:", driverFormCount);
 }
 
+export function resetDriverFormCount() {
+    driverFormCount = 0;
+}
+
 export function setDriverFormHTML(html) {
   driverFormHTML = html;
 }
