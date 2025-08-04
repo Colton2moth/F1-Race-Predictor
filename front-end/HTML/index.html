@@ -13,6 +13,9 @@
         <link rel="stylesheet" href="/front-end/css/driver-form.css" />
         <link rel="stylesheet" href="/front-end/css/circuit-section.css" />
         <link rel="stylesheet" href="/front-end/css/driver-buttons.css" />
+        <link rel="stylesheet" href="/front-end/css/post-prediction-drivers.css" />
+        <link rel="stylesheet" href="/front-end/css/race-prediction.css" />
+        <link rel="stylesheet" href="/front-end/css/submit-race-button.css" />
         <link rel="stylesheet" href="/front-end/css/font-styles/material-symbols-rounded-styles.css" />
     </head>
     <body>
@@ -26,7 +29,16 @@
 
             <div id="circuit-container"></div>
 
-            <div id="all-drivers"></div>        
+            <div id="all-drivers"></div>
+            
+            <div id="predict-button-container">
+                <button class="submit-race-button">
+                    <span class="submit-race-button-text">Predict Podium</span>
+                    <span class="material-symbols-rounded">wand_stars</span>
+                </button>
+            </div>
+
+            <div id="predictions-container"></div>
         </div>
         <!-- JAVASCRIPT IMPORTS -->
         <script src="/front-end/js/general-script.js"></script>
@@ -34,5 +46,6 @@
         <script type="module" src="/front-end/js/driver-forms.js"></script>
         <script type="module" src="/front-end/js/circuit-section.js"></script>
         <script type="module" src="/front-end/js/new-race-button.js"></script>
+        <script type="module" src="/front-end/js/prediction.js"></script>
     </body>
 </html>

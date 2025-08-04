@@ -63,9 +63,9 @@ export async function addNewDriverForm() {
 // To check if a specific driver form has been completed
 function checkFormComplete(driverForm) {
     const driverSelect = driverForm.querySelector("select");
-    const inputs = driverForm.querySelectorAll("input[required]");
+    const allInputs = driverForm.querySelectorAll("input[required]");
 
-    const allInputsFilled = [...inputs].every(input => input.value.trim() !== "");
+    const allInputsFilled = [...allInputs].every(input => input.value.trim() !== "");
     const driverValid = driverSelect && driverSelect.value !== "";
 
     if (allInputsFilled && driverValid) {
@@ -109,9 +109,16 @@ async function driverLogic(driverForm) {
 
   const form = driverForm.querySelector("form");
   if (form) {
-    form.addEventListener("input", () => {
-      checkFormComplete(driverForm);
+    const inputs = form.querySelectorAll("input[required]");
+    inputs.forEach(input => {
+      input.addEventListener("input", () => checkFormComplete(driverForm));
     });
+
+    const driverSelect = form.querySelector("select");
+    if (driverSelect) {
+      driverSelect.addEventListener("change", () => checkFormComplete(driverForm));
+    }
   }
-  
+
+  checkFormComplete(driverForm);
 }

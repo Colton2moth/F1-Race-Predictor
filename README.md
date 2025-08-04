@@ -75,7 +75,7 @@ Right click index.html, opening it directly, and you'll see the website
 ---
 
 ## Ctr C + Ctr V
-### You can copy paste this into your terminal
+### You can copy paste this into your terminal to do all the aforementioned steps at once
 
 ```bash
 cd back-end-bridge
