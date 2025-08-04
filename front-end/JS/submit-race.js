@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const driverList = [];
         driverForms.forEach(driver => {
+                const driverName = driver.querySelector("select").value;
                 const fp1 = parseFloat(driver.querySelector("input[name='fp1']").value);
                 const fp2 = parseFloat(driver.querySelector("input[name='fp2']").value);
                 const fp3 = parseFloat(driver.querySelector("input[name='fp3']").value);
