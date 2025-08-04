@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>F1 Race Predictor</title>
+        <link rel="icon" type="image/png" href="/front-end/other/racecar_clipart.png">
+
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+        <!-- LINKS -->
+        <link rel="stylesheet" href="/front-end/css/general-styles.css" />
+        <link rel="stylesheet" href="/front-end/css/new-race-button.css" />
+        <link rel="stylesheet" href="/front-end/css/driver-form.css" />
+        <link rel="stylesheet" href="/front-end/css/circuit-section.css" />
+        <link rel="stylesheet" href="/front-end/css/driver-buttons.css" />
+        <link rel="stylesheet" href="/front-end/css/post-prediction-drivers.css" />
+        <link rel="stylesheet" href="/front-end/css/race-prediction.css" />
+        <link rel="stylesheet" href="/front-end/css/submit-race-button.css" />
+        <link rel="stylesheet" href="/front-end/css/font-styles/material-symbols-rounded-styles.css" />
+    </head>
+    <body>
+        <div id="head-container">
+            <img id="f1-logo" src="../other/F1.svg.png" />
+            <h1 id="title">F1 Race Predictor </h1>
+        </div>
+
+        <div id="main-content">
+            <div id="new-race-button-container"></div>
+
+            <div id="circuit-container"></div>
+
+            <div id="all-drivers"></div>
+            
+            <div id="predict-button-container">
+                <button class="submit-race-button">
+                    <span class="submit-race-button-text">Predict Podium</span>
+                    <span class="material-symbols-rounded">wand_stars</span>
+                </button>
+            </div>
+
+            <div id="predictions-container"></div>
+        </div>
+        <!-- JAVASCRIPT IMPORTS -->
+        <script src="/front-end/js/general-script.js"></script>
+        <script type="module" src="/front-end/js/shared.js"></script>
+        <script type="module" src="/front-end/js/driver-forms.js"></script>
+        <script type="module" src="/front-end/js/circuit-section.js"></script>
+        <script type="module" src="/front-end/js/new-race-button.js"></script>
+        <script type="module" src="/front-end/js/show-prediction.js"></script>
+        <script type="module" src="/front-end/js//submit-race.js"></script>
+    </body>
+</html>
