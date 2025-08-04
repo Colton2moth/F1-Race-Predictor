@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const quali = parseFloat(driver.querySelector("input[name='quali']").value);
 
                 driverList.push({
+                    driverName,
                     circuit,
                     fp1,
                     fp2,
