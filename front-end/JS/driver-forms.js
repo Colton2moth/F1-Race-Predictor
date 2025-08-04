@@ -2,6 +2,7 @@
 import { newRaceButtonVisibility } from "./new-race-button.js"
 import { updateAddDriverButtonVisibility, noMoreDrivers } from "./circuit-section.js"
 import { wait } from "./shared.js"
+import { submitButtonStatus } from "./submit-race.js"
 
 
 // Counter for the amount of drivers on screen
@@ -73,6 +74,8 @@ function checkFormComplete(driverForm) {
     } else {
         driverForm.classList.remove("completed");
     }
+
+    submitButtonStatus();
 }
 
 // Logic to be applied to each driver
