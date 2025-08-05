@@ -1,0 +1,92 @@
+.delete-driver-button,
+.add-driver-button {
+    color: #ffffff;
+
+    position: absolute;
+    display: flex;
+    align-items: center;
+
+    height: 2rem;
+
+    border: none;
+    border-radius: .5rem;
+
+    transition: all .1s ease;
+}
+
+.add-driver-button {
+    background-color: #4c87ff;
+    top: 1rem;
+    right: 4.25rem;
+}
+
+.delete-driver-button {
+    background-color: #d90000;
+    top: 1rem;
+    right: 1rem;
+}
+
+.add-driver-button .material-symbols-rounded {
+    font-variation-settings: 'FILL' 1, 'wght' 800, 'GRAD' 0, 'opsz' 48;
+    font-size: 1.5rem;
+}
+
+.delete-driver-button .material-symbols-rounded {
+    font-variation-settings: 'FILL' 0, 'wght' 800, 'GRAD' 0, 'opsz' 48;
+    font-size: 1.5rem;
+}
+
+.add-driver-button:hover,
+.delete-driver-button:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    
+    box-shadow: 0 0 .7rem 0 #1a1a1a;
+}
+
+.add-driver-button:hover {
+    background-color: #5c92ff;
+}
+
+.delete-driver-button:hover {
+    background-color: #e00000;
+}
+
+.delete-race-section {
+    background-color: #d90000;
+    color: #ffffff9c;
+
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+
+    height: 2rem;
+
+    bottom: 1rem;
+    align-self: center;
+
+    border: none;
+    border-radius: .5rem;
+    
+    transition: all .2s ease;
+}
+
+.delete-race-section:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    color: #ffffff;
+    
+    box-shadow: 0 0 .7rem 0 #ee00008f;
+}
+
+.delete-race-button-text {
+    font-weight: 600;
+    letter-spacing: .03rem;
+}
+
+.delete-race-section .material-symbols-rounded {
+    font-size: 1.2rem;
+
+    font-variation-settings: 'FILL' 0, 'wght' 800, 'GRAD' 0, 'opsz' 48;
+}

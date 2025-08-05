@@ -1,0 +1,61 @@
+<!-- SET FORM TO MANUELLY INPUT DATA -->
+<div class="driver-form hidden">
+    <form id="form-object">
+        <button type="button" class="delete-driver-button">
+            <span class="material-symbols-rounded">delete</span>
+        </button>
+        <button type="button" class="add-driver-button">
+            <span class="material-symbols-rounded">add</span>
+            <span class="material-symbols-rounded">sports_motorsports</span>
+        </button>
+        <div id="driver-section" class="section">
+            <label id="driver-section-text" for="driver-name">
+                <span class="section-name">Driver:</span>
+                <select class="input-type" name="driver-name" id="driver-name" required>
+                    <option value="" id="driver-placeholder" disabled selected></option>
+                    <option value="Alexander Albon">Alexander Albon</option>
+                    <option value="Fernando Alonso">Fernando Alonso</option>
+                    <option value="Andrea Kimi Antonelli">Andrea Kimi Antonelli</option>
+                    <option value="Oliver Bearman">Oliver Bearman</option>
+                    <option value="Gabriel Bortoleto">Gabriel Bortoleto</option>
+                    <option value="Franco Colapinto">Franco Colapinto</option>
+                    <option value="Pierre Gasly">Pierre Gasly</option>
+                    <option value="Isack Hadjar">Isack Hadjar</option>
+                    <option value="Lewis Hamilton">Lewis Hamilton</option>
+                    <option value="Nico Hulkenberg">Nico Hulkenberg</option>
+                    <option value="Liam Lawson">Liam Lawson</option>
+                    <option value="Charles Leclerc">Charles Leclerc</option>
+                    <option value="Lando Norris">Lando Norris</option>
+                    <option value="Esteban Ocon">Esteban Ocon</option>
+                    <option value="Oscar Piastri">Oscar Piastri</option>
+                    <option value="George Russell">George Russell</option>
+                    <option value="Carlos Sainz">Carlos Sainz</option>
+                    <option value="Lance Stroll">Lance Stroll</option>
+                    <option value="Yuki Tsunoda">Yuki Tsunoda</option>
+                    <option value="Max Verstappen">Max Verstappen</option>
+                </select>
+            </label>
+            </div>
+
+        <div id="lap-time-section" class="section">
+            <label class="lap-time-input">
+                <span class="section-name">Fp1 Lap Time (secs):</span>
+                <input class="input-type" type="number" step="0.001" name="fp1" placeholder="" required>
+            </label>
+            <label class="lap-time-input">
+                <span class="section-name">Fp2 Lap Time (secs):</span>
+                <input class="input-type" type="number" step="0.001" name="fp2" placeholder="" required>
+            </label>
+            <label class="lap-time-input">
+                <span class="section-name">Fp3 Lap Time (secs):</span>
+                <input class="input-type" type="number" step="0.001" name="fp3" placeholder="" required>
+            </label>
+            <label class="lap-time-input">
+                <span class="section-name">Qualifying Lap Time (secs):</span>
+                <input class="input-type" type="number" step="0.001" name="quali" placeholder="" required>
+            </label>
+        </div>
+
+        <button type="submit" id="predict" style="display: none;"></button>
+    </form>
+</div>
