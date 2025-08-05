@@ -1,5 +1,5 @@
 .submit-race-button {
-    background: #fec007;
+    background: #fec007af;
     color: #0000009c;
 
     display: flex;
@@ -17,11 +17,22 @@
     transition: all .2s ease;
 }
 
+.submit-race-button.hidden {
+    transform: translateX(1rem);
+    opacity: 0;
+}
+
+.submit-race-button.add-more-drivers {
+    color: #0000009c;
+    width: 40rem;
+}
+
 .submit-race-button.not-ready {
     color: #0000009c;
 }
 
 .submit-race-button.ready-to-submit {
+    background: #fec007;
     color: #000000;
 }
 
@@ -44,7 +55,7 @@
     transition: all .2s ease, transform .5s ease;
 }
 
-.submit-race-button:hover .material-symbols-rounded {
+.submit-race-button.ready-to-submit:hover .material-symbols-rounded {
   font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 200, 'opsz' 48;
   animation: shake 0.5s ease;
 }

@@ -1,8 +1,6 @@
-
-import { newRaceButtonVisibility } from "./new-race-button.js"
 import { updateAddDriverButtonVisibility, noMoreDrivers } from "./circuit-section.js"
 import { wait } from "./shared.js"
-import { submitButtonStatus } from "./submit-race.js"
+import { submitButtonStatus, addSubmitRaceButton, updateSubmitButtonText } from "./submit-race.js"
 
 
 // Counter for the amount of drivers on screen
@@ -14,12 +12,14 @@ export function changeFormCount(num) {
     driverFormCount = Math.max(0, driverFormCount - 1);
   }
 
+  updateSubmitButtonText(driverFormCount);
   console.log("📢 Update: Form count:", driverFormCount);
 }
 
 // To reset the form counter
 export function resetDriverFormCount() {
     driverFormCount = 0;
+    updateSubmitButtonText(driverFormCount);
 }
 
 // To add a new driver
@@ -59,6 +59,7 @@ export async function addNewDriverForm() {
 
     console.log("📢 Update: A driver was successfully added.");
     changeFormCount(1);
+    addSubmitRaceButton()
 }
 
 // To check if a specific driver form has been completed
@@ -85,8 +86,9 @@ async function driverLogic(driverForm) {
 
   if (addButton) {
     addButton.addEventListener("click", () => {
-      newRaceButtonVisibility();
+      updateAddDriverButtonVisibility();
       addNewDriverForm();
+      addSubmitRaceButton();
     });
   }
 
@@ -105,7 +107,6 @@ async function driverLogic(driverForm) {
         noMoreDrivers();
       }
 
-      newRaceButtonVisibility();
       updateAddDriverButtonVisibility();
     });
   }
