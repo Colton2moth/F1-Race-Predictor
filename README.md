@@ -82,7 +82,7 @@ cd back-end-bridge
 python -m venv venv
 cd ..
 .\venv\Scripts\Activate.ps1
-pip install pandas numpy flask flask-cors joblib scikit-learn
+pip install pandas numpy flask flask-cors joblib scikit-learn xgboost
 cd back-end-bridge
 python app.py
 ```
