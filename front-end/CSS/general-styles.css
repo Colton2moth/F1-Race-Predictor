@@ -70,6 +70,7 @@ body {
 
 #predict-button-container {
     display: flex;
+    align-items: center;
 
     padding-top: 1.5rem;
 }

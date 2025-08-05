@@ -1,7 +1,4 @@
 import { addNewRaceButton } from "./new-race-button.js";
-import { addSubmitRaceButton } from "./submit-race.js";
-import { wait } from "./shared.js"
-import { addCircuitSection } from "./circuit-section.js";
 
 // To make sure all the basic divs are actually in the page
 document.addEventListener("DOMContentLoaded", () => {

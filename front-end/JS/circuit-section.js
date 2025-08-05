@@ -1,6 +1,7 @@
 import { wait } from "./shared.js";
 import { addNewDriverForm, driverFormCount, resetDriverFormCount } from "./driver-forms.js";
 import { addNewRaceButton } from "./new-race-button.js"
+import { addSubmitRaceButton, resetSubmitButtonState } from "./submit-race.js"
 
 // To add the Circuit Section
 export async function addCircuitSection() {
@@ -56,9 +57,9 @@ export function updateAddDriverButtonVisibility() {
   if (!addDriverButton) return;
 
   if (!hasAddedDrivers) {
-      addDriverButton.classList.remove("hidden");
+    addDriverButton.classList.remove("hidden");
   } else {
-      addDriverButton.classList.add("hidden");
+    addDriverButton.classList.add("hidden");
   }
 }
 
@@ -81,6 +82,7 @@ async function deleteRace(circuitSection) {
     await wait(200);
 
     submitButton.remove();
+    resetSubmitButtonState();
   }
 
   allDrivers.classList.add("hidden");
@@ -116,17 +118,18 @@ function setupCircuitSectionListeners(circuitSection) {
   }
 
   addDriverButton.addEventListener("click", () => {
-  addNewDriverForm();
-  hasAddedDrivers = true;
+    addNewDriverForm();
+    hasAddedDrivers = true;
   });
-  
+
   circuitBoxes.forEach(currentCircuitBox => {
     currentCircuitBox.addEventListener("click", () => {
       console.log("📢 Update: A circuit box was clicked.");
 
       if (!hasAddedDrivers && driverFormCount == 0) {
-      addNewDriverForm();
-      hasAddedDrivers = true;
+        addNewDriverForm();
+        hasAddedDrivers = true;
+        addSubmitRaceButton();
       }
 
       const currentSelected = circuitSection.querySelector(".selected-circuit");

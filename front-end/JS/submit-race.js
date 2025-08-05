@@ -1,32 +1,51 @@
 import { wait } from "./shared.js"
 import { driverFormCount } from "./driver-forms.js"
 
-export function addSubmitRaceButton() {
-    const allDrivers = document.getElementById("all-drivers");
-    const submitRaceButton = document.querySelector(".submit-race-button");
-        if (!submitRaceButton) {
-        console.log("⚠️ Error: submit-race-button cannot be found.");
+let submitButtonAdded = false;
+
+export function resetSubmitButtonState() {
+  submitButtonAdded = false;
+}
+
+export async function addSubmitRaceButton() {
+    if (submitButtonAdded) {
         return;
     }
 
+    const res = await fetch("/front-end/HTML/submit-race-button.html");
+    const html = await res.text();
+
+    const predictButtonContainer = document.getElementById("predict-button-container");
+    const temp = document.createElement("div");
+    temp.innerHTML = html;
+
+    const submitRaceButton = temp.querySelector(".submit-race-button");
+        if (!submitRaceButton) {
+        console.log("⚠️ Error: submit-race-button cannot be found.");
+        return;
+    } 
+    
+    predictButtonContainer.appendChild(submitRaceButton);
+    submitButtonAdded = true;
+
     const observer = new MutationObserver(() => {
         const circuitSelected = document.querySelector(".selected-circuit") !== null;
-        const currentDrivers = document.querySelectorAll(".driver-form").length;
 
-        if (circuitSelected && currentDrivers > 0) {
+        if (circuitSelected && driverFormCount > 0) {
             showSubmitRaceButton(submitRaceButton);
         } else {
             submitRaceButton.classList.add("hidden");
             submitRaceButton.classList.remove("visible");
         }
 
-        if (currentDrivers >= 3) {
+        if (driverFormCount >= 3) {
             submitRaceButton.classList.remove("add-more-drivers");
         } else {
             submitRaceButton.classList.add("add-more-drivers");
         }
     });
 
+    const allDrivers = document.getElementById("all-drivers");
     observer.observe(allDrivers, { childList: true, subtree: true });
 
     // For when the Submit Button is clicked
@@ -126,29 +145,30 @@ function checkDrivers(driverForms) {
 }
 
 export async function submitButtonStatus() {
-    const submitButton = document.querySelector(".submit-race-button");
-    const driverForms = document.querySelectorAll(".driver-form");
-    if (!submitButton) {
+    const submitRaceButton = document.querySelector(".submit-race-button");
+    if (!submitRaceButton) {
         console.log("⚠️ Warning: submit-race-button is not in the DOM yet.");
         return;
     }
+
+    const driverForms = document.querySelectorAll(".driver-form");
 
     const allComplete = [...driverForms].every(form =>
         form.classList.contains("completed")
     );
 
     if (allComplete) {
-        submitButton.classList.remove("not-ready");
+        submitRaceButton.classList.remove("not-ready");
 
         await wait(200);
 
-        submitButton.classList.add("ready-to-submit");
+        submitRaceButton.classList.add("ready-to-submit");
         console.log("📢 Update: All driver forms have completed. Submit button is ready.");
     } else {
-        submitButton.classList.add("not-ready");
+        submitRaceButton.classList.add("not-ready");
 
         await wait(200);
 
-        submitButton.classList.remove("ready-to-submit");
+        submitRaceButton.classList.remove("ready-to-submit");
     }
 }

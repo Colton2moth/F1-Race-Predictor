@@ -38,7 +38,7 @@ function newRaceButtonClicked(newRaceButton) {
     newRaceButton.remove();
     addCircuitSection();
     addSubmitRaceButton();
-
+    
     console.log("📢 Update: New race button was clicked.")
   });
 }
