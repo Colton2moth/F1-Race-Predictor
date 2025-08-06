@@ -157,7 +157,7 @@ export async function submitButtonStatus() {
         form.classList.contains("completed")
     );
 
-    if (allComplete) {
+    if (driverFormCount >= 3 && allComplete) {
         submitRaceButton.classList.remove("not-ready");
 
         await wait(200);
