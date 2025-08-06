@@ -13,8 +13,7 @@
         <link rel="stylesheet" href="/front-end/css/driver-form.css" />
         <link rel="stylesheet" href="/front-end/css/circuit-section.css" />
         <link rel="stylesheet" href="/front-end/css/driver-buttons.css" />
-        <link rel="stylesheet" href="/front-end/css/post-prediction-drivers.css" />
-        <link rel="stylesheet" href="/front-end/css/race-prediction.css" />
+        <link rel="stylesheet" href="/front-end/css/podium-prediction.css" />
         <link rel="stylesheet" href="/front-end/css/submit-race-button.css" />
         <link rel="stylesheet" href="/front-end/css/font-styles/material-symbols-rounded-styles.css" />
     </head>
@@ -34,7 +33,30 @@
             <div id="predict-button-container"></div>
 
             <div id="predictions-container">
-                
+                <div class="podium-prediction-section-title">
+                    <span id="podium-prediction-section-title-text">PODIUM DRIVERS</span>
+                    <div class="underline"></div>
+                </div>
+                <div class="podium-prediction-section">
+                    <div id="second-place-driver" class="podium-driver-container">
+                        <div class="podium-percent"><span class="podium-percent-text">40%</span></div>
+                        <span class="podium-driver-text">Max Verstappen</span>
+                        <div class="podium-stage"><span class="podium-stage-text">2ND</span></div>
+                    </div>
+                    <div id="first-place-driver" class="podium-driver-container">
+                        <div class="podium-percent"><span class="podium-percent-text">60%</span></div>
+                        <span class="podium-driver-text">Andrea Kimi Antonelli</span>
+                        <div class="podium-stage"><span class="podium-stage-text">1ST</span></div>
+                    </div>
+                    <div id="third-place-driver" class="podium-driver-container">
+                        <div class="podium-percent"><span class="podium-percent-text">20%</span></div>
+                        <span class="podium-driver-text">Lewis Hamilton</span>
+                        <div class="podium-stage"><span class="podium-stage-text">3RD</span></div>
+                    </div>
+                </div>
+                <div class="floor">
+                    <span class="floor-text">*These percentages are only estimates of an individuals ability to make podium and are not indicative of their final positions</span>
+                </div>
             </div>
         </div>
         <!-- JAVASCRIPT IMPORTS -->

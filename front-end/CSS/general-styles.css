@@ -74,3 +74,17 @@ body {
 
     padding-top: 1.5rem;
 }
+
+#predictions-container {
+    display: flex;
+    position: relative;
+
+    background: #303030;
+
+    height: 22rem;
+    width: 50rem;
+
+    border-radius: 1rem;
+
+    margin-top: 2rem;
+}
