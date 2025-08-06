@@ -1,9 +1,6 @@
-
-import { newRaceButtonVisibility } from "./new-race-button.js"
 import { updateAddDriverButtonVisibility, noMoreDrivers } from "./circuit-section.js"
 import { wait } from "./shared.js"
-import { submitButtonStatus } from "./submit-race.js"
-
+import { submitButtonStatus, addSubmitRaceButton, updateSubmitButtonText } from "./submit-race.js"
 
 // Counter for the amount of drivers on screen
 export let driverFormCount = 0;
@@ -14,68 +11,70 @@ export function changeFormCount(num) {
     driverFormCount = Math.max(0, driverFormCount - 1);
   }
 
+  updateSubmitButtonText(driverFormCount);
   console.log("📢 Update: Form count:", driverFormCount);
 }
 
 // To reset the form counter
 export function resetDriverFormCount() {
     driverFormCount = 0;
+    updateSubmitButtonText(driverFormCount);
 }
 
 // To add a new driver
 export async function addNewDriverForm() {
-  const res = await fetch("/front-end/HTML/driver-form.html");
-  const html = await res.text();
+const res = await fetch("/front-end/HTML/driver-form.html");
+const html = await res.text();
 
-    if (!html) {
-        console.log("⚠️ Error: driverFormHTML cannot be found.");
-        return;
-    }
+  if (!html) {
+      console.log("⚠️ Error: driverFormHTML cannot be found.");
+      return;
+  }
 
-    const allDrivers = document.getElementById("all-drivers");
-    if (!allDrivers) {
-    console.log("⚠️ Error: all-drivers container not found.");
-    return;
-    }
+  const allDrivers = document.getElementById("all-drivers");
+  if (!allDrivers) {
+  console.log("⚠️ Error: all-drivers container not found.");
+  return;
+  }
 
-    const temp = document.createElement("div");
-    temp.innerHTML = html;
+  const temp = document.createElement("div");
+  temp.innerHTML = html;
 
-    const driverForm = temp.querySelector(".driver-form");
-    if (!driverForm) {
-        console.log("⚠️ Error: driver-form cannot be found.");
-        return;
-    }
+  const driverForm = temp.querySelector(".driver-form");
+  if (!driverForm) {
+      console.log("⚠️ Error: driver-form cannot be found.");
+      return;
+  }
 
-    allDrivers.appendChild(driverForm);
+  allDrivers.appendChild(driverForm);
 
-    requestAnimationFrame(() => {
-        driverForm.classList.remove("hidden");
-        driverForm.classList.add("show");
-    });
+  requestAnimationFrame(() => {
+      driverForm.classList.remove("hidden");
+      driverForm.classList.add("show");
+  });
 
-    driverLogic(driverForm);
-    updateAddDriverButtonVisibility();
+  driverLogic(driverForm);
+  updateAddDriverButtonVisibility();
 
-    console.log("📢 Update: A driver was successfully added.");
-    changeFormCount(1);
+  console.log("📢 Update: A driver was successfully added.");
+  changeFormCount(1);
 }
 
 // To check if a specific driver form has been completed
 function checkFormComplete(driverForm) {
-    const driverSelect = driverForm.querySelector("select");
-    const allInputs = driverForm.querySelectorAll("input[required]");
+  const driverSelect = driverForm.querySelector("select");
+  const allInputs = driverForm.querySelectorAll("input[required]");
 
-    const allInputsFilled = [...allInputs].every(input => input.value.trim() !== "");
-    const driverValid = driverSelect && driverSelect.value !== "";
+  const allInputsFilled = [...allInputs].every(input => input.value.trim() !== "");
+  const driverValid = driverSelect && driverSelect.value !== "";
 
-    if (allInputsFilled && driverValid) {
-        driverForm.classList.add("completed");
-    } else {
-        driverForm.classList.remove("completed");
-    }
+  if (allInputsFilled && driverValid) {
+      driverForm.classList.add("completed");
+  } else {
+      driverForm.classList.remove("completed");
+  }
 
-    submitButtonStatus();
+  submitButtonStatus();
 }
 
 // Logic to be applied to each driver
@@ -85,8 +84,9 @@ async function driverLogic(driverForm) {
 
   if (addButton) {
     addButton.addEventListener("click", () => {
-      newRaceButtonVisibility();
+      updateAddDriverButtonVisibility();
       addNewDriverForm();
+      addSubmitRaceButton();
     });
   }
 
@@ -105,7 +105,6 @@ async function driverLogic(driverForm) {
         noMoreDrivers();
       }
 
-      newRaceButtonVisibility();
       updateAddDriverButtonVisibility();
     });
   }

@@ -1,13 +1,14 @@
 import { wait } from "./shared.js";
 import { addNewDriverForm, driverFormCount, resetDriverFormCount } from "./driver-forms.js";
-import { newRaceButtonVisibility } from "./new-race-button.js"
+import { addNewRaceButton } from "./new-race-button.js"
+import { addSubmitRaceButton, resetSubmitButtonState } from "./submit-race.js"
 
 // To add the Circuit Section
 export async function addCircuitSection() {
   const res = await fetch("/front-end/HTML/circuit-section.html");
   const html = await res.text();
 
-  const circuitContainer = document.getElementById("circuit-container");
+  const circuitSectionContainer = document.getElementById("circuit-section-container");
   const temp = document.createElement("div");
   temp.innerHTML = html;
 
@@ -18,7 +19,7 @@ export async function addCircuitSection() {
   }
 
   const deleteRaceButton = circuitSection.querySelector(".delete-race-section");
-   if (!circuitSection) {
+   if (!deleteRaceButton) {
     console.log("⚠️ Error: delete-race-section cannot be found.");
     return;
   }
@@ -30,14 +31,18 @@ export async function addCircuitSection() {
 
   await wait(200);
 
-  circuitContainer.appendChild(circuitSection);
+  if (!circuitSection.classList.contains("hidden")) {
+    circuitSection.classList.add("hidden");
+  }
 
-  requestAnimationFrame(() => {
-    circuitSection.classList.remove("hidden");
-    setTimeout(() => {
-      circuitSection.classList.add("show");
-    }, 20);
-  });
+  circuitSectionContainer.appendChild(circuitSection);
+
+  void circuitSection.offsetHeight;
+
+  circuitSection.classList.remove("hidden");
+  circuitSection.classList.add("show");
+
+  await wait(200);
 
   setupCircuitSectionListeners(circuitSection);
   console.log("📢 Update: Circuit section is now visible.");
@@ -52,9 +57,9 @@ export function updateAddDriverButtonVisibility() {
   if (!addDriverButton) return;
 
   if (!hasAddedDrivers) {
-      addDriverButton.classList.remove("hidden");
+    addDriverButton.classList.remove("hidden");
   } else {
-      addDriverButton.classList.add("hidden");
+    addDriverButton.classList.add("hidden");
   }
 }
 
@@ -69,6 +74,16 @@ export function noMoreDrivers() {
 async function deleteRace(circuitSection) {
   const allDrivers = document.getElementById("all-drivers");
   const everyIndividualDriver = allDrivers.querySelectorAll(".driver-form");
+  const submitButton = document.querySelector(".submit-race-button");
+
+  if (submitButton != null) {
+    submitButton.classList.add("hidden");
+
+    await wait(200);
+
+    submitButton.remove();
+    resetSubmitButtonState();
+  }
 
   allDrivers.classList.add("hidden");
 
@@ -87,7 +102,8 @@ async function deleteRace(circuitSection) {
   circuitSection.remove();
 
   console.log("📢 Update: Current race has been fully deleted.");
-  newRaceButtonVisibility();
+
+  addNewRaceButton();
 }
 
 // To set up the logic for the Circuit Section
@@ -102,17 +118,18 @@ function setupCircuitSectionListeners(circuitSection) {
   }
 
   addDriverButton.addEventListener("click", () => {
-  addNewDriverForm();
-  hasAddedDrivers = true;
+    addNewDriverForm();
+    hasAddedDrivers = true;
   });
-  
+
   circuitBoxes.forEach(currentCircuitBox => {
     currentCircuitBox.addEventListener("click", () => {
       console.log("📢 Update: A circuit box was clicked.");
 
       if (!hasAddedDrivers && driverFormCount == 0) {
-      addNewDriverForm();
-      hasAddedDrivers = true;
+        addNewDriverForm();
+        hasAddedDrivers = true;
+        addSubmitRaceButton();
       }
 
       const currentSelected = circuitSection.querySelector(".selected-circuit");
