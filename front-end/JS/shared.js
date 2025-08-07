@@ -1,3 +1,48 @@
+
+import { resetDriverFormCount } from "./driver-forms.js";
+import { addNewRaceButton } from "./new-race-button.js"
+import { resetSubmitButtonState } from "./submit-race.js"
+import { noMoreDrivers } from "./circuit-section.js";
+
 export function wait(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// To delete the whole race and bring back the New Race button
+export async function deleteRace() {
+  const circuitSection = document.querySelector(".circuit-section");
+  const allDrivers = document.getElementById("all-drivers");
+  const everyIndividualDriver = allDrivers.querySelectorAll(".driver-form");
+  const submitButton = document.querySelector(".submit-race-button");
+
+  if (submitButton != null) {
+    submitButton.classList.add("hidden");
+
+    await wait(200);
+
+    submitButton.remove();
+    resetSubmitButtonState();
+  }
+
+  allDrivers.classList.add("hidden");
+
+  await wait(300);
+
+  everyIndividualDriver.forEach(driver => driver.remove());
+
+  resetDriverFormCount();
+  noMoreDrivers();
+
+  allDrivers.classList.remove("hidden");
+  circuitSection.classList.add("hidden");
+
+  await wait(200);
+
+  circuitSection.remove();
+
+  await wait(300);
+
+  console.log("📢 Update: Current race has been fully removed.");
+
+  addNewRaceButton();
 }

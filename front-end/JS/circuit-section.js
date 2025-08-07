@@ -1,7 +1,13 @@
-import { wait } from "./shared.js";
-import { addNewDriverForm, driverFormCount, resetDriverFormCount } from "./driver-forms.js";
-import { addNewRaceButton } from "./new-race-button.js"
-import { addSubmitRaceButton, resetSubmitButtonState } from "./submit-race.js"
+import { wait, deleteRace } from "./shared.js";
+import { addNewDriverForm, driverFormCount } from "./driver-forms.js";
+import { addSubmitRaceButton } from "./submit-race.js"
+
+// To track if at least one driver has been added
+export let hasAddedDrivers = false;
+
+export function noMoreDrivers() {
+  hasAddedDrivers = false;
+}
 
 // To add the Circuit Section
 export async function addCircuitSection() {
@@ -26,7 +32,7 @@ export async function addCircuitSection() {
 
   deleteRaceButton.addEventListener("click", () => {
   console.log("📢 Update: Delete race button was clicked.");
-  deleteRace(circuitSection);
+  deleteRace();
   }) 
 
   await wait(200);
@@ -61,49 +67,6 @@ export function updateAddDriverButtonVisibility() {
   } else {
     addDriverButton.classList.add("hidden");
   }
-}
-
-// To track if at least one driver has been added
-export let hasAddedDrivers = false;
-
-export function noMoreDrivers() {
-  hasAddedDrivers = false;
-}
-
-// To delete the whole race and bring back the New Race button
-async function deleteRace(circuitSection) {
-  const allDrivers = document.getElementById("all-drivers");
-  const everyIndividualDriver = allDrivers.querySelectorAll(".driver-form");
-  const submitButton = document.querySelector(".submit-race-button");
-
-  if (submitButton != null) {
-    submitButton.classList.add("hidden");
-
-    await wait(200);
-
-    submitButton.remove();
-    resetSubmitButtonState();
-  }
-
-  allDrivers.classList.add("hidden");
-
-  await wait(300);
-
-  everyIndividualDriver.forEach(driver => driver.remove());
-
-  resetDriverFormCount();
-  hasAddedDrivers = false;
-
-  allDrivers.classList.remove("hidden");
-  circuitSection.classList.add("hidden");
-
-  await wait(200);
-
-  circuitSection.remove();
-
-  console.log("📢 Update: Current race has been fully deleted.");
-
-  addNewRaceButton();
 }
 
 // To set up the logic for the Circuit Section

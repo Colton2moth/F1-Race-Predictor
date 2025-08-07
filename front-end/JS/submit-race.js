@@ -1,7 +1,21 @@
 import { wait } from "./shared.js"
 import { driverFormCount } from "./driver-forms.js"
+import { showPodium } from "./show-podium.js";
 
 let submitButtonAdded = false;
+
+export let resultsAreOut = false;
+
+let driverPredictions = [];
+
+export function setDriverPredictions(drivers) {
+    driverPredictions.length = 0;           
+    driverPredictions.push(...drivers);     
+}
+
+export function getDriverPredictions() {
+    return driverPredictions;
+}
 
 export function resetSubmitButtonState() {
   submitButtonAdded = false;
@@ -106,12 +120,14 @@ export async function addSubmitRaceButton() {
                     }
 
                     console.log(result);
-                    
+                    setDriverPredictions(result.predictions);
+                    resultsAreOut = true;
                 } catch (err) {
                     console.error(err);
                     alert("Error sending prediction request.");
                 }
             }
+            showPodium();
     });
 }
 

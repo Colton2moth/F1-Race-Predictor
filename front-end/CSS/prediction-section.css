@@ -87,6 +87,10 @@ box-sizing: border-box;
     z-index: 100;
 }
 
+.podium-stage.hidden {
+    
+}
+
 .podium-stage-text {
     margin-top: .4rem;
     font-weight: 800;
