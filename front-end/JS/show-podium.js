@@ -22,8 +22,23 @@ export async function showPodium() {
 
     requestAnimationFrame(async() => {
     predictionSection.classList.remove("hidden");
-    await wait(500);
+    await wait(1500);
+    await showPodiumDrivers();
     })
+}
+
+async function showPodiumDrivers() {
+    let firstPlace = document.querySelector("#first-place-driver");
+    let secondPlace = document.querySelector("#second-place-driver");
+    let thirdPlace = document.querySelector("#third-place-driver");
+
+    requestAnimationFrame(() => thirdPlace.classList.remove("hidden"));
+
+    await wait(3000);
+    requestAnimationFrame(() => secondPlace.classList.remove("hidden"));
+
+    await wait(3000);
+    requestAnimationFrame(() => firstPlace.classList.remove("hidden"));
 }
 
 function organizedDrivers() {
