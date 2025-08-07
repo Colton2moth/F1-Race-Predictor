@@ -13,8 +13,8 @@
 }
 
 .podium-prediction-section-title {
-    top: 2rem;
-    position: absolute;
+    top: .5rem;
+    position: relative;
     left: 50%;
     transform: translateX(-50%);
 
@@ -22,20 +22,37 @@
 }
 
 #podium-prediction-section-title-text {
-font-size: 2rem;
+    display: inline-block;
+font-size: 1.5rem;
 font-weight: 600;
 letter-spacing: .05rem;
 }
 
 .underline {
-    width: 210%;
+    width: 180%;
     position: absolute;
-    height: .2rem;
+    height: .15rem;
     background: #ffffff;
     border-radius: 1rem;
     left: 50%;
     transform: translateX(-50%);
-    top: 3rem;
+    top: 2rem;
+}
+
+.race-circuit {
+    position: absolute;
+    top: 3.2rem;
+     white-space: nowrap;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.race-circuit span {
+  display: inline-block;
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: white;
+  letter-spacing: .05rem;
 }
 
 .floor {

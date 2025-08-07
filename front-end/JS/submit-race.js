@@ -8,6 +8,16 @@ export let resultsAreOut = false;
 
 let driverPredictions = [];
 
+let raceCircuit = null;
+
+function setRaceCircuit(circuit) {
+    raceCircuit = circuit;
+}
+
+export function getRaceCircuit() {
+    return raceCircuit;
+}
+
 export function setDriverPredictions(drivers) {
     driverPredictions.length = 0;           
     driverPredictions.push(...drivers);     
@@ -73,6 +83,7 @@ export async function addSubmitRaceButton() {
         }
 
         const circuit = selectedCircuit.dataset.value;
+        setRaceCircuit(circuit);
 
         const driverForms = document.querySelectorAll(".driver-form");
 

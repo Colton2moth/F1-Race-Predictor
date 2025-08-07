@@ -1,5 +1,5 @@
 import { wait, deleteRace } from "./shared.js"
-import { resultsAreOut, getDriverPredictions } from "./submit-race.js"
+import { resultsAreOut, getDriverPredictions, getRaceCircuit } from "./submit-race.js"
 
 export async function showPodium() {
     await deleteRace();
@@ -67,6 +67,10 @@ function organizedDrivers() {
 
 function putWinningDriversOnPodium() {
     if (!resultsAreOut) return;
+
+    document.querySelector(".race-circuit").innerHTML = `
+  <span>Circuit: ${getRaceCircuit()}</span>
+`;
 
     let driversInOrder = organizedDrivers();
 
