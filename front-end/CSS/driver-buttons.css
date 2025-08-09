@@ -1,5 +1,5 @@
-.delete-driver-button,
-.add-driver-button {
+.add-driver-button,
+.delete-driver-button {
     color: #ffffff;
 
     position: absolute;
@@ -26,16 +26,6 @@
     right: 1rem;
 }
 
-.add-driver-button .material-symbols-rounded {
-    font-variation-settings: 'FILL' 1, 'wght' 800, 'GRAD' 0, 'opsz' 48;
-    font-size: 1.5rem;
-}
-
-.delete-driver-button .material-symbols-rounded {
-    font-variation-settings: 'FILL' 0, 'wght' 800, 'GRAD' 0, 'opsz' 48;
-    font-size: 1.5rem;
-}
-
 .add-driver-button:hover,
 .delete-driver-button:hover {
     cursor: pointer;
@@ -50,6 +40,12 @@
 
 .delete-driver-button:hover {
     background-color: #e00000;
+}
+
+.add-driver-button .material-symbols-rounded,
+.delete-driver-button .material-symbols-rounded {
+    font-variation-settings: 'FILL' 0, 'wght' 800, 'GRAD' 0, 'opsz' 48;
+    font-size: 1.5rem;
 }
 
 .delete-race-section {

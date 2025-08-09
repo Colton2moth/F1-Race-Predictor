@@ -1,0 +1,118 @@
+#input-form{
+    background: #ffffff;
+
+    display: none;
+
+    width: fit-content;
+
+    padding: 1rem;
+    margin-top: 1rem;
+    
+    border-radius: 1rem;
+}
+
+#form {
+    color: #000000;
+
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+
+    gap: 1rem;
+}
+
+.section {
+    padding: 0;
+    margin: 0;
+}
+
+.section-name {
+    display: flex;
+    align-items: center;
+    
+    margin-bottom: .5rem;
+
+    font-weight: 700;
+}
+
+.input-type {
+    background: #0000001b;
+
+    width: 10rem;
+    height: 1.7rem;
+
+    padding-left: .45rem;
+    margin-top: .3rem;
+
+    border: none;
+    border-radius: .3rem;
+
+    font-size: 1rem;
+}
+
+#driver-name {
+    width: 12rem;
+}
+
+#circuit-options {
+    display: flex;
+    flex-direction: column;
+
+    padding: 0;
+    margin: 0;
+}
+
+.circuit-row {
+    display: flex;
+
+    height: 3rem;
+
+    margin-bottom: 1rem;
+
+    gap: 1rem;
+}
+
+.circuit-box {
+    background: #0000001b;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 9rem;
+    height: 100%;
+
+    border-radius: .4rem;
+}
+
+.track-name {
+    font-size: .9rem;
+    font-weight: 540;
+}
+
+.circuit-box:hover {
+    background: #ee000016;
+    cursor: pointer;
+}
+
+.circuit-box.selected-circuit,
+.circuit-box.selected-circuit:hover {
+    background: #ee000016;
+    color: #000000;
+    
+    box-shadow: 0 0 .6rem 0 #ff0000;
+
+    border-radius: 1rem;
+
+    font-weight: 700;
+}
+
+.circuit-box.selected-circuit .track-name,
+.circuit-box.selected-circuit:hover .track-name {
+    font-weight: 500;
+}
+
+#lap-time-section {
+    display: flex;
+    gap: 3rem;
+}

@@ -75,8 +75,10 @@ def predict():
 
             # Use the function
             podium_prob = predict_podium_probability(circuit, fp1, fp2, fp3, quali)
-            driver_prediction = {"Driver Name": d.get("driverName"),
-            'Podium Probability': float(podium_prob)}
+            driver_prediction = {
+                "Driver Name": d.get("driverName"),
+                "Podium Probability": round(float(podium_prob) * 100, 2)
+            }
             predictions.append(driver_prediction)
 
         return jsonify({'predictions': predictions})

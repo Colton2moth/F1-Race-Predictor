@@ -1,0 +1,209 @@
+.podium-prediction-section {
+    position: absolute;
+    bottom: 2rem;
+    
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end; 
+    justify-content: center;
+
+    left: 50%;
+    transform: translateX(-50%);
+
+    height: fit-content;
+}
+
+.podium-prediction-section-title {
+    color: #ffffff;
+
+    position: relative;
+    top: .5rem;
+
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#podium-prediction-section-title-text {
+    display: inline-block;
+
+    font-size: 1.5rem;
+    font-weight: 600;
+
+    letter-spacing: .05rem;
+}
+
+.underline {
+    background: #ffffff;
+
+    position: absolute;
+    top: 2rem;
+
+    width: 180%;
+    height: .15rem;
+
+    left: 50%;
+    transform: translateX(-50%);
+
+    border-radius: 1rem;
+}
+
+.race-circuit {
+    position: absolute;
+    top: 3.2rem;
+
+    left: 50%;
+    transform: translateX(-50%);
+
+    white-space: nowrap;
+}
+
+.race-circuit span {
+    color: #ffffff; 
+
+    display: inline-block;
+
+    font-weight: 800;
+    font-size: 1.5rem;
+
+    letter-spacing: .05rem;
+}
+
+.floor {
+    background: #202020;
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 2rem;
+
+    border-radius: 0 0 1rem 1rem;
+}
+
+.floor-text {
+    color: #ffffff1a;
+    position: absolute;
+
+    font-size: .8rem;
+    font-weight: 600;
+}
+
+.podium-driver-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    transition: all 2s ease;
+}
+
+.podium-driver-container.hidden {
+    transform: translateY(15rem);
+}
+
+.podium-stage {
+    background: #151515;
+    color: #ffffff;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 15rem;
+    height: 3rem;
+
+    margin-top: .5rem;
+
+    box-sizing: border-box;
+    border: .15rem solid #ffffff49;
+    border-bottom: none;
+
+    z-index: 100;
+}
+
+.podium-stage-text {
+    margin-top: .4rem;
+
+    font-weight: 800;
+    font-size: 1.5rem;
+}
+
+#first-place-driver .podium-stage-text {
+    background: linear-gradient(#f6f184, #ac720e);
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#second-place-driver .podium-stage-text {
+    background: linear-gradient(#e8e8e8, #8f8f8f);
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#third-place-driver .podium-stage-text {
+    background: linear-gradient(#cfbb9c, #996242);
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+} 
+
+#first-place-driver .podium-stage {
+    height: 8rem;
+}
+
+#second-place-driver .podium-stage {
+    height: 5.3rem;
+}
+
+#third-place-driver .podium-stage {
+    height: 3.5rem;
+}
+
+.podium-percent {
+    color: #9cff96;
+    padding-bottom: 0.2rem;
+}
+
+.podium-percent-text {
+    font-size: 1.7rem;
+    font-weight: 800;
+}
+
+.podium-driver-text {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+#first-place-driver .podium-driver-text {
+    background: linear-gradient(#f6f184, #ac720e);
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#second-place-driver .podium-driver-text {
+    background: linear-gradient(#e8e8e8, #8f8f8f);
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#third-place-driver .podium-driver-text {
+    background: linear-gradient(#cfbb9c, #996242);
+    
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+} 

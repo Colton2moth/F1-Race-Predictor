@@ -1,15 +1,16 @@
 .submit-race-button {
-    background: #fec007;
+    background: #fec007af;
     color: #0000009c;
 
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: .5rem;
 
     height: 3rem;
     width: 20rem;
+
+    gap: .5rem;
 
     border: none;
     border-radius: 1.3rem;
@@ -17,11 +18,22 @@
     transition: all .2s ease;
 }
 
+.submit-race-button.hidden {
+    transform: translateX(1rem);
+    opacity: 0;
+}
+
+.submit-race-button.add-more-drivers {
+    color: #0000009c;
+    width: 40rem;
+}
+
 .submit-race-button.not-ready {
     color: #0000009c;
 }
 
 .submit-race-button.ready-to-submit {
+    background: #fec007;
     color: #000000;
 }
 
@@ -44,18 +56,22 @@
     transition: all .2s ease, transform .5s ease;
 }
 
-.submit-race-button:hover .material-symbols-rounded {
-  font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 200, 'opsz' 48;
-  animation: shake 0.5s ease;
+.icon-disabled {
+display: none;
+}
+
+.submit-race-button.ready-to-submit:hover .material-symbols-rounded {
+    font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 200, 'opsz' 48;
+    animation: shake 0.5s ease;
 }
 
 @keyframes shake {
-  0%   { transform: rotate(0deg); }
-  15%  { transform: rotate(10deg); }
-  30%  { transform: rotate(-10deg); }
-  45%  { transform: rotate(5deg); }
-  60%  { transform: rotate(-5deg); }
-  75%  { transform: rotate(2deg); }
-  90%  { transform: rotate(-2deg); }
-  100% { transform: rotate(0deg); }
+    0%   { transform: rotate(0deg); }
+    15%  { transform: rotate(10deg); }
+    30%  { transform: rotate(-10deg); }
+    45%  { transform: rotate(5deg); }
+    60%  { transform: rotate(-5deg); }
+    75%  { transform: rotate(2deg); }
+    90%  { transform: rotate(-2deg); }
+    100% { transform: rotate(0deg); }
 }

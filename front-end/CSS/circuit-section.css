@@ -15,19 +15,29 @@
     
     border-radius: 1rem;
 
+    opacity: 0;
+    transform: translateY(-10px);
+
+    pointer-events: auto;
+    user-select: none;
+
     transition: all .3s ease;
 }
 
 .circuit-section.show {
     opacity: 1;
     transform: translateY(0);
-    pointer-events: auto;
 }
 
 .circuit-section.hidden {
     opacity: 0;
     transform: translateY(-10px);
-    pointer-events: none;
+}
+
+#circuit-section-name {
+    font-size: 1.3rem;
+    font-weight: 500;
+    padding-bottom: 1rem;
 }
 
 #add-driver-circuit-section {
@@ -39,12 +49,6 @@
     opacity: 0;
     pointer-events: none;
     transform: translateX(10px);
-}
-
-#circuit-section-name {
-    font-size: 1.3rem;
-    font-weight: 500;
-    padding-bottom: 1rem;
 }
 
 .circuit-row {
