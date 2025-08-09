@@ -1,4 +1,4 @@
-import { wait, deleteRace } from "./shared.js";
+import { wait, deleteRace, showError } from "./shared.js";
 import { addNewDriverForm, driverFormCount } from "./driver-forms.js";
 import { addSubmitRaceButton } from "./submit-race.js"
 
@@ -20,13 +20,19 @@ export async function addCircuitSection() {
 
   const circuitSection = temp.querySelector(".circuit-section");
   if (!circuitSection) {
-    console.log("⚠️ Error: circuit-section cannot be found.");
+    let errorMsg = "⚠️ Error: circuit-section cannot be found.";
+    showError(errorMsg);
+
+    console.log(errorMsg);
     return;
   }
 
   const deleteRaceButton = circuitSection.querySelector(".delete-race-section");
    if (!deleteRaceButton) {
-    console.log("⚠️ Error: delete-race-section cannot be found.");
+    let errorMsg = "⚠️ Error: delete-race-section cannot be found.";
+    showError(errorMsg);
+
+    console.log(errorMsg);
     return;
   }
 

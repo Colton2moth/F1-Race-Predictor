@@ -1,4 +1,4 @@
-import { wait, deleteRace } from "./shared.js"
+import { wait, deleteRace, showError } from "./shared.js"
 import { resultsAreOut, getDriverPredictions, getRaceCircuit } from "./submit-race.js"
 
 export async function showPodium() {
@@ -13,7 +13,10 @@ export async function showPodium() {
 
     const predictionSection = temp.querySelector("#prediction-section");
     if (!predictionSection) {
-        console.log("⚠️ Error: prediction-section cannot be found.");
+        let errorMsg = "⚠️ Error: prediction-section cannot be found.";
+        showError(errorMsg);
+
+        console.log(errorMsg);
         return;
     }
     

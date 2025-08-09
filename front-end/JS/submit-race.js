@@ -1,4 +1,4 @@
-import { wait } from "./shared.js"
+import { wait, showError } from "./shared.js"
 import { driverFormCount } from "./driver-forms.js"
 import { showPodium } from "./show-podium.js";
 
@@ -45,7 +45,10 @@ export async function addSubmitRaceButton() {
 
     const submitRaceButton = temp.querySelector(".submit-race-button");
         if (!submitRaceButton) {
-        console.log("⚠️ Error: submit-race-button cannot be found.");
+            let errorMsg = "⚠️ Error: submit-race-button cannot be found.";
+            showError(errorMsg);
+
+            console.log(errorMsg);
         return;
     } 
     
@@ -78,7 +81,10 @@ export async function addSubmitRaceButton() {
 
         const selectedCircuit = document.querySelector(".selected-circuit");
         if (!selectedCircuit) {
-            console.log("⚠️ Error: No circuit selected.");
+            let errorMsg = "⚠️ Error: No circuit selected.";
+            showError(errorMsg);
+            
+            console.log(errorMsg);
             return;
         }
 
@@ -88,7 +94,10 @@ export async function addSubmitRaceButton() {
         const driverForms = document.querySelectorAll(".driver-form");
 
         if (!checkDrivers(driverForms)) {
-            console.log("⚠️ Error: Not all driver forms have been completed.");
+            let errorMsg = "⚠️ Error: Not all driver forms have been completed.";
+            showError(errorMsg);
+            
+            console.log(errorMsg);
             return;
         }
 
@@ -174,7 +183,10 @@ function checkDrivers(driverForms) {
 export async function submitButtonStatus() {
     const submitRaceButton = document.querySelector(".submit-race-button");
     if (!submitRaceButton) {
-        console.log("⚠️ Warning: submit-race-button is not in the DOM yet.");
+        let errorMsg = "⚠️ Error: submit-race-button cannot be found.";
+        showError(errorMsg);
+            
+        console.log();
         return;
     }
 

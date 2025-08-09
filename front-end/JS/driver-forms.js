@@ -1,5 +1,5 @@
 import { updateAddDriverButtonVisibility, noMoreDrivers } from "./circuit-section.js"
-import { wait } from "./shared.js"
+import { wait, showError } from "./shared.js"
 import { submitButtonStatus, addSubmitRaceButton, updateSubmitButtonText } from "./submit-race.js"
 
 // Counter for the amount of drivers on screen
@@ -17,8 +17,8 @@ export function changeFormCount(num) {
 
 // To reset the form counter
 export function resetDriverFormCount() {
-    driverFormCount = 0;
-    updateSubmitButtonText(driverFormCount);
+  driverFormCount = 0;
+  updateSubmitButtonText(driverFormCount);
 }
 
 // To add a new driver
@@ -27,13 +27,19 @@ const res = await fetch("/front-end/HTML/driver-form.html");
 const html = await res.text();
 
   if (!html) {
-      console.log("⚠️ Error: driverFormHTML cannot be found.");
-      return;
+    let errorMsg = "⚠️ Error: driverFormHTML cannot be found.";
+    showError(errorMsg);
+
+    console.log(errorMsg);
+    return;
   }
 
   const allDrivers = document.getElementById("all-drivers");
   if (!allDrivers) {
-  console.log("⚠️ Error: all-drivers container not found.");
+    let errorMsg = "⚠️ Error: all-drivers container not found.";
+    showError(errorMsg);
+    
+    console.log(errorMsg);
   return;
   }
 
@@ -42,8 +48,11 @@ const html = await res.text();
 
   const driverForm = temp.querySelector(".driver-form");
   if (!driverForm) {
-      console.log("⚠️ Error: driver-form cannot be found.");
-      return;
+    let errorMsg = "⚠️ Error: driver-form cannot be found.";
+    showError(errorMsg);
+
+    console.log(errorMsg);
+    return;
   }
 
   allDrivers.appendChild(driverForm);

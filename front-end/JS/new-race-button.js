@@ -1,4 +1,4 @@
-import { wait } from "./shared.js";
+import { wait, showError } from "./shared.js";
 import { addCircuitSection } from "./circuit-section.js";
 import { addSubmitRaceButton } from "./submit-race.js";
 import { resetPodium } from "./show-podium.js";
@@ -14,7 +14,10 @@ export async function addNewRaceButton () {
 
   const newRaceButton = temp.querySelector(".new-race-button");
   if (!newRaceButton) {
-    console.log("⚠️ Error: new-race-button cannot be found.");
+    let errorMsg = "⚠️ Error: new-race-button cannot be found.";
+    showError(errorMsg);
+
+    console.log(errorMsg);
     return;
   }
 
