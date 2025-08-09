@@ -23,6 +23,34 @@ export function resetDriverFormCount() {
   updateSubmitButtonText(driverFormCount);
 }
 
+// helpers (put near top of file)
+function getAllDriverSelects() {
+  return Array.from(document.querySelectorAll(".driver-form select"));
+}
+
+function getChosenSet(ignoreSelect = null) {
+  const set = new Set();
+  getAllDriverSelects().forEach(sel => {
+    if (sel !== ignoreSelect && sel.value) set.add(sel.value);
+  });
+  return set;
+}
+
+// Call this whenever a select changes / form added / form removed
+export function syncDriverOptions() {
+  const selects = getAllDriverSelects();
+  const chosen = getChosenSet(); // all chosen values
+
+  selects.forEach(sel => {
+    const keepEnabled = sel.value; // allow the one currently chosen in this select
+    sel.querySelectorAll("option").forEach(opt => {
+      if (!opt.value) return; // skip placeholder
+      opt.disabled = chosen.has(opt.value) && opt.value !== keepEnabled;
+    });
+  });
+}
+
+
 // To add a new driver
 export async function addNewDriverForm() {
   if (driverFormCount >= 20) {
@@ -77,6 +105,7 @@ export async function addNewDriverForm() {
   driverLogic(driverForm);
   changeFormCount(1);
   updateAddDriverButtonVisibility();
+  syncDriverOptions();         
 
   console.log("📢 Update: A driver was successfully added.");
 }
@@ -122,6 +151,7 @@ async function driverLogic(driverForm) {
       
       driverForm.remove();
       changeFormCount(-1);
+      syncDriverOptions();         
       console.log("📢 Update: A driver has been deleted.");
 
       if (driverFormCount == 0){
@@ -141,7 +171,10 @@ async function driverLogic(driverForm) {
 
     const driverSelect = form.querySelector("select");
     if (driverSelect) {
-      driverSelect.addEventListener("change", () => checkFormComplete(driverForm));
+      driverSelect.addEventListener("change", () => {
+        checkFormComplete(driverForm);
+        syncDriverOptions();         
+      });
     }
   }
 
