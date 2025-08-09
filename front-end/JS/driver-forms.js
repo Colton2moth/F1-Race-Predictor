@@ -6,9 +6,11 @@ import { submitButtonStatus, addSubmitRaceButton, updateSubmitButtonText } from 
 export let driverFormCount = 0;
 export function changeFormCount(num) {
   if (num == 1) {
-    driverFormCount++;
+    driverFormCount++
+    driverFormCount = Math.min(20, driverFormCount);
   } else if (num == -1) {
-    driverFormCount = Math.max(0, driverFormCount - 1);
+    driverFormCount--;
+    driverFormCount = Math.max(0, driverFormCount);
   }
 
   updateSubmitButtonText(driverFormCount);
@@ -23,8 +25,18 @@ export function resetDriverFormCount() {
 
 // To add a new driver
 export async function addNewDriverForm() {
-const res = await fetch("/front-end/HTML/driver-form.html");
-const html = await res.text();
+  if (driverFormCount >= 20) {
+      let errorMsg = "ⓘ Alert: Driver limit has been hit, cannot add anymore drivers.";
+      showError(errorMsg);
+
+      console.log("ⓘ Alert: driver-form capacity has been reached, cannot add more than 20 driver-forms to one race");
+
+      updateAddDriverButtonVisibility();
+      return;
+    }
+
+  const res = await fetch("/front-end/HTML/driver-form.html");
+  const html = await res.text();
 
   if (!html) {
     let errorMsg = "⚠️ Error: driverFormHTML cannot be found.";
@@ -63,10 +75,10 @@ const html = await res.text();
   });
 
   driverLogic(driverForm);
+  changeFormCount(1);
   updateAddDriverButtonVisibility();
 
   console.log("📢 Update: A driver was successfully added.");
-  changeFormCount(1);
 }
 
 // To check if a specific driver form has been completed
@@ -92,6 +104,8 @@ async function driverLogic(driverForm) {
   const deleteButton = driverForm.querySelector(".delete-driver-button");
 
   if (addButton) {
+    
+
     addButton.addEventListener("click", () => {
       updateAddDriverButtonVisibility();
       addNewDriverForm();

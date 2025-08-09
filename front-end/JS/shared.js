@@ -38,7 +38,7 @@ export async function showError(message) {
     errorToast.classList.add("show")
   });
 
-  await wait(2000);
+  await wait(4000);
 
   errorToast.classList.remove("show");
   requestAnimationFrame(async() => {
