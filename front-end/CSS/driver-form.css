@@ -11,6 +11,7 @@
     transition: all .3s ease;
     
     pointer-events: none;
+    user-select: none;
 }
 
 .driver-form.show {
@@ -69,23 +70,18 @@
 
     font-size: 1rem;
 
+    user-select: none;
     transition: all .2s ease;
 }
 
 .input-type:focus {
     outline: none;
-
     box-shadow: inset 0 0 .6rem -.2rem #fff700;
 }
 
 .input-type:not(select):not(:placeholder-shown):not(:focus),
 select.input-type:valid {
   box-shadow: inset 0 0 .6rem -.2rem #26ff00;
-}
-
-#button-section {
-    position: absolute;
-    bottom: 10rem;
 }
 
 #driver-name {

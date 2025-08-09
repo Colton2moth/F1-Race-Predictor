@@ -93,11 +93,19 @@ export async function addSubmitRaceButton() {
 
         const driverForms = document.querySelectorAll(".driver-form");
 
-        if (!checkDrivers(driverForms)) {
-            let errorMsg = "⚠️ Error: Not all driver forms have been completed.";
+        if (driverFormCount < 3) {
+            let errorMsg = "🚨 Alert: At least 3 drivers are required to predict podium results.";
             showError(errorMsg);
             
-            console.log(errorMsg);
+            console.log("🚨 Alert: At least 3 driver-forms are required to predict podium results.");
+            return;
+        }
+
+        if (!checkDrivers(driverForms)) {
+            let errorMsg = "🚨 Alert: Not all driver forms have been completed.";
+            showError(errorMsg);
+            
+            console.log("🚨 Alert: Not all driver-forms have been completed.");
             return;
         }
 

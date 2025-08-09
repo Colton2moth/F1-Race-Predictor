@@ -2,46 +2,45 @@
   background: #ee0000;
   color: #ffffffcc;
 
-  border-radius: 5rem;
-  border: none;
-
-  margin: 0;
-  padding: 0;
-
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+
+  width: 9rem;
+  height: 3rem;
+
+  margin: 0;
+  padding: 0;
+
+  border-radius: 5rem;
+  border: none;
+
   gap: .3rem;
 
-  height: 3rem;
-  width: 9rem;
-
-  vertical-align: middle;
-  text-align: center;
+  transition: all .2s ease;
 
   cursor: pointer;
-
-  transition: all .2s ease;
+  user-select: none;
 }
 
 .new-race-button.hidden {
   opacity: 0;
   transform: translateY(-10px);
 
-
   pointer-events: none;
 }
 
 .new-race-button:hover{
-  transform: scale(1.03);
-  box-shadow: 0 0 1.5rem 0 #ee00004d;
   color: #ffffff;
+  
+  box-shadow: 0 0 1.5rem 0 #ee00004d;
+  transform: scale(1.03);
 }
 
 .new-race-button-text {
-  font-weight: 600;
   font-size: 1rem;
+  font-weight: 600;
 }
 
 .new-race-button .material-symbols-rounded {
