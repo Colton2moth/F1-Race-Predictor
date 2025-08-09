@@ -1,9 +1,11 @@
-import { updateAddDriverButtonVisibility, noMoreDrivers } from "./circuit-section.js"
 import { wait, showError } from "./shared.js"
+import { updateAddDriverButtonVisibility, noMoreDrivers } from "./circuit-section.js"
 import { submitButtonStatus, addSubmitRaceButton, updateSubmitButtonText } from "./submit-race.js"
 
 // Counter for the amount of drivers on screen
 export let driverFormCount = 0;
+
+// Call this function whenever you want to change the driverFormCount
 export function changeFormCount(num) {
   if (num == 1) {
     driverFormCount++
@@ -17,50 +19,22 @@ export function changeFormCount(num) {
   console.log("📢 Update: Form count:", driverFormCount);
 }
 
-// To reset the form counter
+// To reset the driverformCount to 0
 export function resetDriverFormCount() {
   driverFormCount = 0;
   updateSubmitButtonText(driverFormCount);
 }
 
-// helpers (put near top of file)
-function getAllDriverSelects() {
-  return Array.from(document.querySelectorAll(".driver-form select"));
-}
-
-function getChosenSet(ignoreSelect = null) {
-  const set = new Set();
-  getAllDriverSelects().forEach(sel => {
-    if (sel !== ignoreSelect && sel.value) set.add(sel.value);
-  });
-  return set;
-}
-
-// Call this whenever a select changes / form added / form removed
-export function syncDriverOptions() {
-  const selects = getAllDriverSelects();
-  const chosen = getChosenSet(); // all chosen values
-
-  selects.forEach(sel => {
-    const keepEnabled = sel.value; // allow the one currently chosen in this select
-    sel.querySelectorAll("option").forEach(opt => {
-      if (!opt.value) return; // skip placeholder
-      opt.disabled = chosen.has(opt.value) && opt.value !== keepEnabled;
-    });
-  });
-}
-
-
 // To add a new driver
 export async function addNewDriverForm() {
   if (driverFormCount >= 20) {
-      let errorMsg = "ⓘ Alert: Driver limit has been hit, cannot add anymore drivers.";
-      showError(errorMsg);
+    let errorMsg = "ⓘ Alert: Driver limit has been hit, cannot add anymore drivers.";
+    showError(errorMsg);
 
-      console.log("ⓘ Alert: driver-form capacity has been reached, cannot add more than 20 driver-forms to one race");
+    console.log("ⓘ Alert: driver-form capacity has been reached, cannot add more than 20 driver-forms to one race");
 
-      updateAddDriverButtonVisibility();
-      return;
+    updateAddDriverButtonVisibility();
+    return;
     }
 
   const res = await fetch("/front-end/HTML/driver-form.html");
@@ -80,7 +54,7 @@ export async function addNewDriverForm() {
     showError(errorMsg);
     
     console.log(errorMsg);
-  return;
+    return;
   }
 
   const temp = document.createElement("div");
@@ -98,8 +72,8 @@ export async function addNewDriverForm() {
   allDrivers.appendChild(driverForm);
 
   requestAnimationFrame(() => {
-      driverForm.classList.remove("hidden");
-      driverForm.classList.add("show");
+    driverForm.classList.remove("hidden");
+    driverForm.classList.add("show");
   });
 
   driverLogic(driverForm);
@@ -108,6 +82,37 @@ export async function addNewDriverForm() {
   syncDriverOptions();         
 
   console.log("📢 Update: A driver was successfully added.");
+}
+
+// The following set of functions are to prevent a user form selecting the same driver for multiple driver-forms
+function getAllDriverNameSelectOptions() {
+  return Array.from(document.querySelectorAll(".driver-form select"));
+}
+
+function getChosenSet(ignoreSelect = null) {
+  const set = new Set();
+
+  getAllDriverNameSelectOptions().forEach(sel => {
+    if (sel !== ignoreSelect && sel.value) {
+      set.add(sel.value);
+    }
+  });
+
+  return set;
+}
+
+// Call whenever: a select changes, a form is added or a form removed
+export function syncDriverOptions() {
+  const selects = getAllDriverNameSelectOptions();
+  const chosen = getChosenSet();
+
+  selects.forEach(sel => {
+    const keepEnabled = sel.value;
+    sel.querySelectorAll("option").forEach(opt => {
+      if (!opt.value) return;
+      opt.disabled = chosen.has(opt.value) && opt.value !== keepEnabled;
+    });
+  });
 }
 
 // To check if a specific driver form has been completed
@@ -119,9 +124,9 @@ function checkFormComplete(driverForm) {
   const driverValid = driverSelect && driverSelect.value !== "";
 
   if (allInputsFilled && driverValid) {
-      driverForm.classList.add("completed");
+    driverForm.classList.add("completed");
   } else {
-      driverForm.classList.remove("completed");
+    driverForm.classList.remove("completed");
   }
 
   submitButtonStatus();
@@ -132,9 +137,8 @@ async function driverLogic(driverForm) {
   const addButton = driverForm.querySelector(".add-driver-button");
   const deleteButton = driverForm.querySelector(".delete-driver-button");
 
+  // Whenever an add driver button is clicked
   if (addButton) {
-    
-
     addButton.addEventListener("click", () => {
       updateAddDriverButtonVisibility();
       addNewDriverForm();
@@ -142,6 +146,7 @@ async function driverLogic(driverForm) {
     });
   }
 
+  // Whenever an delete driver button is clicked
   if (deleteButton) {
     deleteButton.addEventListener("click", async () => {
       driverForm.classList.remove("show");
@@ -162,6 +167,7 @@ async function driverLogic(driverForm) {
     });
   }
 
+  // To check if this driver-form has been completed everytime on of its values is changed
   const form = driverForm.querySelector("form");
   if (form) {
     const inputs = form.querySelectorAll("input[required]");

@@ -1,7 +1,7 @@
 import { wait, showError } from "./shared.js";
 import { addCircuitSection } from "./circuit-section.js";
 import { addSubmitRaceButton } from "./submit-race.js";
-import { resetPodium } from "./show-podium.js";
+import { removePodium } from "./show-podium.js";
 
 // To add the New Race button 
 export async function addNewRaceButton () {
@@ -35,7 +35,7 @@ export async function addNewRaceButton () {
 function newRaceButtonClicked(newRaceButton) {
   newRaceButton.addEventListener("click", async () => {
     if (document.contains(document.querySelector("#prediction-section"))) {
-      resetPodium();
+      removePodium();
     }
 
     newRaceButton.disabled = true;

@@ -1,6 +1,7 @@
 import { wait, deleteRace, showError } from "./shared.js"
 import { resultsAreOut, getDriverPredictions, getRaceCircuit } from "./submit-race.js"
 
+// To show the podium
 export async function showPodium() {
     await deleteRace();
     
@@ -30,20 +31,7 @@ export async function showPodium() {
     })
 }
 
-async function showPodiumDrivers() {
-    let firstPlace = document.querySelector("#first-place-driver");
-    let secondPlace = document.querySelector("#second-place-driver");
-    let thirdPlace = document.querySelector("#third-place-driver");
-
-    requestAnimationFrame(() => thirdPlace.classList.remove("hidden"));
-
-    await wait(3000);
-    requestAnimationFrame(() => secondPlace.classList.remove("hidden"));
-
-    await wait(3000);
-    requestAnimationFrame(() => firstPlace.classList.remove("hidden"));
-}
-
+// To find the top 3 prediction probabilities from the ML model
 function organizedDrivers() {
     const driverPredictions = getDriverPredictions();
     let remainingDrivers = [...driverPredictions];
@@ -67,13 +55,11 @@ function organizedDrivers() {
     return podiumDrivers;
 }
 
-
+// To populate the podium with the values of the top podium predicitons 
 function putWinningDriversOnPodium() {
     if (!resultsAreOut) return;
 
-    document.querySelector(".race-circuit").innerHTML = `
-  <span>Circuit: ${getRaceCircuit()}</span>
-`;
+    document.querySelector(".race-circuit").innerHTML =` <span>Circuit: ${getRaceCircuit()}</span> `;
 
     let driversInOrder = organizedDrivers();
 
@@ -86,7 +72,24 @@ function putWinningDriversOnPodium() {
     document.querySelector("#third-place-driver .podium-percent-text").textContent = driversInOrder[2]["Podium Probability"] + "%";
 }
 
-export function resetPodium() {
+
+// To play the animations for the drivers
+async function showPodiumDrivers() {
+    let firstPlace = document.querySelector("#first-place-driver");
+    let secondPlace = document.querySelector("#second-place-driver");
+    let thirdPlace = document.querySelector("#third-place-driver");
+
+    requestAnimationFrame(() => thirdPlace.classList.remove("hidden"));
+
+    await wait(3000);
+    requestAnimationFrame(() => secondPlace.classList.remove("hidden"));
+
+    await wait(3000);
+    requestAnimationFrame(() => firstPlace.classList.remove("hidden"));
+}
+
+// To delete the current podium when starting a new race
+export function removePodium() {
     const predictionSection = document.querySelector("#prediction-section");
     predictionSection.classList.add("hidden");
 

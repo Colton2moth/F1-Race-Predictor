@@ -1,9 +1,10 @@
 
-import { resetDriverFormCount } from "./driver-forms.js";
 import { addNewRaceButton } from "./new-race-button.js"
-import { resetSubmitButtonState } from "./submit-race.js"
 import { noMoreDrivers } from "./circuit-section.js";
+import { resetDriverFormCount } from "./driver-forms.js";
+import { resetSubmitButtonState } from "./submit-race.js"
 
+// Forces code to pause execution
 export function wait(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -50,7 +51,7 @@ export async function showError(message) {
   errorToast.remove();
 }
 
-// To delete the whole race and bring back the New Race button
+// To delete the whole race + bring back the New Race button
 export async function deleteRace() {
   const circuitSection = document.querySelector(".circuit-section");
   const allDrivers = document.getElementById("all-drivers");

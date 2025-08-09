@@ -4,7 +4,6 @@ import { addSubmitRaceButton } from "./submit-race.js"
 
 // To track if at least one driver has been added
 export let hasAddedDrivers = false;
-
 export function noMoreDrivers() {
   hasAddedDrivers = false;
 }
@@ -50,7 +49,6 @@ export async function addCircuitSection() {
   circuitSectionContainer.appendChild(circuitSection);
 
   void circuitSection.offsetHeight;
-
   circuitSection.classList.remove("hidden");
   circuitSection.classList.add("show");
 
@@ -91,6 +89,7 @@ function setupCircuitSectionListeners(circuitSection) {
     hasAddedDrivers = true;
   });
 
+  // Logic for each individual circuit selection box
   circuitBoxes.forEach(currentCircuitBox => {
     currentCircuitBox.addEventListener("click", () => {
       console.log("📢 Update: A circuit box was clicked.");
