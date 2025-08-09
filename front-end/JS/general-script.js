@@ -42,5 +42,13 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("📢 Update: predictions-container div was found.")
     }
 
+    const errorToastContainer = document.getElementById("error-toast-container");
+    if (!errorToastContainer) {
+        console.log("⚠️ Error: error-toast-container div cannot be found.")
+        return;
+    } else {
+        console.log("📢 Update: predictions-container div was found.")
+    }
+
     addNewRaceButton();
 })

@@ -8,6 +8,48 @@ export function wait(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+// To show error messages on screen in a toast pop-up
+export async function showError(message) {
+  const res = await fetch("/front-end/HTML/error-toast.html");
+  const html = await res.text();
+
+  const errorToastContainer = document.getElementById("error-toast-container");
+  const temp = document.createElement("div");
+  temp.innerHTML = html;
+
+  const errorToast = temp.querySelector(".toast");
+  if (!errorToast) {
+    console.log("⚠️ Error: error-toast cannot be found.");
+    return;
+  }
+
+  if (message == null || message == ""){
+    errorToast.querySelector(".error-message").textContent = "Something went wrong!";
+  } else {
+    errorToast.querySelector(".error-message").textContent = message;
+  }
+
+  errorToastContainer.appendChild(errorToast);
+
+  errorToast.classList.remove("hidden");
+  void errorToast.offsetWidth;
+
+  requestAnimationFrame(async() => {
+    errorToast.classList.add("show")
+  });
+
+  await wait(2000);
+
+  errorToast.classList.remove("show");
+  requestAnimationFrame(async() => {
+    errorToast.classList.add("hidden")
+  });
+
+  await wait(400);
+
+  errorToast.remove();
+}
+
 // To delete the whole race and bring back the New Race button
 export async function deleteRace() {
   const circuitSection = document.querySelector(".circuit-section");
