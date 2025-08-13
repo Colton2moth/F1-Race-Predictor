@@ -5,7 +5,7 @@ import { resetDriverFormCount } from "./driver-forms.js";
 import { resetSubmitButtonState } from "./submit-race.js"
 
 // replace after backend deploy
-export const API_BASE = "https://<your-api-service>.onrender.com";
+export const API_BASE = "https://f1podiumpredictor.onrender.com";
 
 // Forces code to pause execution
 export function wait(ms) {
