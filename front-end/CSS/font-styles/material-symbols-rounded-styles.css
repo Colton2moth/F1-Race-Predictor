@@ -1,7 +1,7 @@
 /* to use the font for symbols that has been downloaded with the project */
 @font-face { 
     font-family: 'Material Symbols Rounded';
-    src: url('/front-end/fonts/MaterialSymbolsRounded[FILL\,GRAD\,opsz\,wght].woff2') format('woff2');
+    src: url('./fonts/MaterialSymbolsRounded[FILL\,GRAD\,opsz\,wght].woff2') format('woff2');
 }
 
 .material-symbols-rounded {
