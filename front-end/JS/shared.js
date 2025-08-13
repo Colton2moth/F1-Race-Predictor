@@ -4,6 +4,9 @@ import { noMoreDrivers } from "./circuit-section.js";
 import { resetDriverFormCount } from "./driver-forms.js";
 import { resetSubmitButtonState } from "./submit-race.js"
 
+// replace after backend deploy
+export const API_BASE = "https://<your-api-service>.onrender.com"; 
+
 // Forces code to pause execution
 export function wait(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -11,7 +14,7 @@ export function wait(ms) {
 
 // To show error messages on screen in a toast pop-up
 export async function showError(message) {
-  const res = await fetch("/front-end/HTML/error-toast.html");
+  const res = await fetch("./HTML/error-toast.html");
   const html = await res.text();
 
   const errorToastContainer = document.getElementById("error-toast-container");
