@@ -100,7 +100,7 @@ pip install -r ../requirements.txt
 (If no `requirements.txt`, use this instead:)
 
 ```bash
-pip install flask flask-cors fastf1 pandas numpy scikit-learn matplotlib xgboost
+pip install flask flask-cors fastf1 pandas numpy scikit-learn matplotlib xgboost gunicorn
 ```
 
 #### 4. Run the Flask Backend
