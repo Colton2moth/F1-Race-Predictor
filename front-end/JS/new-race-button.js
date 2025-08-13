@@ -5,7 +5,7 @@ import { removePodium } from "./show-podium.js";
 
 // To add the New Race button 
 export async function addNewRaceButton () {
-  const res = await fetch("/front-end/HTML/new-race-button.html");
+  const res = await fetch("./HTML/new-race-button.html");
   const html = await res.text();
 
   const newRaceButtonContainer = document.getElementById("new-race-button-container");

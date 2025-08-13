@@ -5,7 +5,7 @@ import { resultsAreOut, getDriverPredictions, getRaceCircuit } from "./submit-ra
 export async function showPodium() {
     await deleteRace();
     
-    const res = await fetch("/front-end/HTML/prediction-section.html");
+    const res = await fetch("./HTML/prediction-section.html");
     const html = await res.text();
 
     const predictionsContainer = document.getElementById("predictions-container");

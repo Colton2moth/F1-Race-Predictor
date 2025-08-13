@@ -10,7 +10,7 @@ export function noMoreDrivers() {
 
 // To add the Circuit Section
 export async function addCircuitSection() {
-  const res = await fetch("/front-end/HTML/circuit-section.html");
+  const res = await fetch("./HTML/circuit-section.html");
   const html = await res.text();
 
   const circuitSectionContainer = document.getElementById("circuit-section-container");

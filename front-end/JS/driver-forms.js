@@ -37,7 +37,7 @@ export async function addNewDriverForm() {
     return;
     }
 
-  const res = await fetch("/front-end/HTML/driver-form.html");
+  const res = await fetch("./HTML/driver-form.html");
   const html = await res.text();
 
   if (!html) {

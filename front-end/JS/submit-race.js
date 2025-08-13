@@ -1,4 +1,4 @@
-import { wait, showError } from "./shared.js"
+import { wait, showError, API_BASE } from "./shared.js"
 import { driverFormCount } from "./driver-forms.js"
 import { showPodium } from "./show-podium.js";
 
@@ -38,7 +38,7 @@ export async function addSubmitRaceButton() {
         return;
     }
 
-    const res = await fetch("/front-end/HTML/submit-race-button.html");
+    const res = await fetch("./HTML/submit-race-button.html");
     const html = await res.text();
 
     const predictButtonContainer = document.getElementById("predict-button-container");
@@ -138,15 +138,20 @@ export async function addSubmitRaceButton() {
 
         if (submitRaceButton.classList.contains("ready-to-submit")) {
             try {
-                const res = await fetch("http://127.0.0.1:5000/predict", {
+                const res = await fetch(`${API_BASE}/predict`, {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({ drivers: driverList })
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ drivers:driverList })
                 });
 
                 console.log("📢 Update: Race has succsessfully been sent in for prediction.");
+
+                if (!res.ok) {
+                    const text = await res.text();
+                    showError("⚠️ Error: Prediction failed.");
+                    console.error("⚠️ Error:", res.status, text);
+                    return;
+                }
 
                 const result = await res.json();
 
@@ -160,8 +165,8 @@ export async function addSubmitRaceButton() {
                 setDriverPredictions(result.predictions);
                 resultsAreOut = true;
             } catch (err) {
+                showError("⚠️ Error sending prediction request.");
                 console.error(err);
-                alert("Error sending prediction request.");
             }
         }
 
@@ -202,7 +207,7 @@ export async function submitButtonStatus() {
         let errorMsg = "⚠️ Error: submit-race-button cannot be found.";
         showError(errorMsg);
             
-        console.log();
+        console.log(errorMsg);
         return;
     }
 
