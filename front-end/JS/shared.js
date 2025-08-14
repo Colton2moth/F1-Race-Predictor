@@ -4,8 +4,7 @@ import { noMoreDrivers } from "./circuit-section.js";
 import { resetDriverFormCount } from "./driver-forms.js";
 import { resetSubmitButtonState } from "./submit-race.js"
 
-// replace after backend deploy
-export const API_BASE = "https://f1podiumpredictorbackend.onrender.com";
+export const API_BASE = "https://api.podiumpredict.com";
 
 // Forces code to pause execution
 export function wait(ms) {

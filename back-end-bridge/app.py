@@ -7,9 +7,13 @@ import os
 
 app = Flask(__name__)
 
-# Allow your deployed frontend origin (set this in Render later)
-FRONTEND_ORIGIN = os.getenv("FRONTEND_ORIGIN", "*")
-CORS(app, resources={r"/predict": {"origins": [FRONTEND_ORIGIN]}})
+origins_csv = os.getenv("FRONTEND_ORIGINS", "").split(",")
+ALLOWED_ORIGINS = [o.strip() for o in origins_csv if o.strip()]
+CORS(app, resources={r"/*": {"origins": ALLOWED_ORIGINS}})
+
+@app.get("/")
+def health():
+    return {"ok": True}, 200
 
 # Load model (file sits next to app.py)
 MODEL_PATH = os.path.join(os.path.dirname(__file__), "podium_model.pkl")
