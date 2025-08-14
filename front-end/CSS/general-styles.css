@@ -24,20 +24,39 @@ body {
     gap: 2rem;
 }
 
+#f1-logo {
+    height: 2.5rem;
+    pointer-events: none;
+    user-select: none;
+}
+
+#head-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #title {
     color: #ffffff;
 
     padding: 0;
     margin: 0;
 
-    font-weight: 600;;
+    font-weight: 600;
     font-size: 3rem;
 }
 
-#f1-logo {
-    height: 2.5rem;
-    pointer-events: none;
-    user-select: none;
+#sub-title {
+    color: #ffffff51;
+
+    display: flex;
+    justify-content: center;
+
+    padding: 0;
+    margin: 0;
+
+    font-weight: 600;
+    font-size: .8rem;
 }
 
 #main-content {
@@ -92,6 +111,8 @@ body {
     transition: all 1s ease;
 
     overflow: hidden;
+
+    user-select: none;
 }
 
 #prediction-section.hidden {
