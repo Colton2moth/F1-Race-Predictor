@@ -4,6 +4,13 @@
 |⭕️⭕️\__ F1 Race Predictor __/⭕️⭕️|
 
 ---
+<p align="center">
+  <a href="https://podiumpredict.com/" target="_blank" style="font-size:20px; font-weight:bold;">
+    🌐 Podium Predict Website
+  </a>
+</p>
+
+---
 
 This project predicts F1 podium outcomes using driver performance data from free practice and qualifying sessions. The app features:
 
